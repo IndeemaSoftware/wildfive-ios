@@ -1,0 +1,108 @@
+/* 
+  Localizable.strings
+  WildFive
+
+  Created by Lion User on 26/10/2012.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+//NewGameVC
+"Create Game" = "Створити Гру";
+"Find" = "Знайти";
+"Online Game" = "Онлайн гра ";
+"Offline" = "Офлайн гра";
+"Game Via Bluetooth" = "Грати через Bluetooth";
+"Back" = "Назад";
+"Restart" = "Ще раз";
+
+//RootVC
+"New Game" = "Нова Гра";
+"Facebook" = "Facebook";
+"Twitter" = "Twitter";
+"Settings" = "Налаштування";
+"About" = "Правила гри";
+
+//SettingsVC
+"Game Settings" = "Налаштування гри";
+"Music Settings" = "Налаштування звуку";
+"Name:" = "Ім'я";
+"Field Size:" = "Розмір поля"; 
+"Background Music:" = "Фонова музика";
+"Sound Effect:" = "Звукові ефекти";
+"Enable Sound:" = "Вкл/викл звук";
+"Vibration Tone:" = "Вібрація";
+"Board Size:" = "Розмір:";
+"Play with friend" = "Грати з другом";
+
+//SelectBluetoothVC
+"No Games" = "Немає ігор";
+
+//MessageV
+"insert text" = "Введіть текст";
+"Cancel" = "Скасувати";
+
+//SettingsMenuV
+"Game" = "Гра";
+"Music" = "Музика";
+
+//Credits
+"Credits" = "Подяка";
+"Developed by:" = "Розробники:";
+"All music provided by Italian composer Andrea Carri:" ="Музика створена італійським композитором Андреа Каррі:";
+
+//OnlineGameV
+"Waiting for opponent..." = "Очікується суперник...";
+"Searching for game..." = "Пошук гри...";
+//selectBluetoothVC
+"Create new game" = "Створити нову гру";
+"Cancel" = "Відмінити";
+"Create" = "Створити";
+"name" = "ім'я";
+"Your opponent has left game!" = "Ваш суперник покинув гру!";
+"Do you want to continue with bot?" = "Бажаєте продовжити?";
+"Continue with bot?" = "Бажаєте продовжити?";
+"Network problems" = "Проблеми з інтернетом";
+"Please turn on wi-fi." = "Будь ласка, ввімкніть wi-fi";
+//
+
+//GameVC
+"Game finished" = "Кінець гри";
+"Hide" = "Сховати";
+"YES" = "Так";
+"NO" = "Ні";
+"Well done. You won.\n Play again?" = "Так тримати.Ти виграв!\nГрати ще?";
+"Do not cheer up. Be a man.\n Try again?" = "Будь чоловіком..Спробуй ще раз.\nГрати ще?";
+"Not bad.\n Play again?" = "Непогано.\n Грати ще?";
+"Do you want to skip tutorial?" = "Пропустити?";
+"Message:" = "Повідомлення:";
+//Poster
+"You have just won. Would you like to share it?" = "Поділитися перемогою з друзями?";
+"Post" = "Опублікувати";
+//"Post" = "Афишировать";
+"Easy" = "Початківець";
+"Middle" = "Середній";
+"Hard" = "Важкий";
+//OnlineGameV
+"Waiting..." = "Зачекайте...";
+
+//About
+"How to play"="Правила гри";
+"The objective is to construct a continuous series of players with exactly five characters of his color vertically, horizontally or diagonally.The game goes to infinite field. No fouls. Construction of a long series (5 or more consecutive pieces) brings victory.\n\n How to play:\nclick on the display and hold pressure,move item to the desired location, wait for locks your item and release" = 
+"Завдання - сконструювати безперервний ланцюжок  з п'яти символів одного кольору по – вертикалі, по – горизонталі або по – діагоналі.Поля, в грі, не мають меж.Хто побудує ланцюжок з 5 символів ,\n той отримає поремогу.\n\nЯк грати:\nКлацніть по дисплею і утримуючи, переміщайте елемент на бажане місце ,зачекайте щоб він зафіксувався і відпустіть.";
+"Show" = "Показати";
+//AnimationDoc
+"Press and..." = "Натисніть і ...";
+"Move" = "Рухайте";
+"Wait for \nfixed" = "Зачекайте щоб\n зафіксувати";
+"Release" = "Відпустіть";
+
+//levels
+"Beginner"="Початківець";
+"Hard" = "Важкий";
+"Medium" = "Середній";
+"Player" = "Гравець";
+
+//AbstructV
+"Buy!" = "Kупити!";
+//Purchasing
+"You have successfully purchased %i hints" = "Ви успішно придбали %i підказок";
+"Buy hints" = "Kупити підказки";

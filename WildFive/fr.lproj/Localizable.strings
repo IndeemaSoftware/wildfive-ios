@@ -1,0 +1,108 @@
+/*
+ Localizable.strings
+ WildFive
+ 
+ Created by Lion User on 26/10/2012.
+ Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+ */
+//NewGameVC
+"Create Game" = "Créer un Jeu";
+"Find" = "Trouver";
+"Online Game" = "Jeu-En ligne";
+"Offline" = "Jeu-Hors ligne";
+"Game Via Bluetooth" = "Jeu par Bluetooth";
+"Back" = "Arrière";
+"Restart" = "Recommencer";
+
+//RootVC
+"New Game" = "Jeu Nouveau";
+"Facebook" = "Facebook";
+"Twitter" = "Twitter";
+"Settings" = "Paramètres";
+"About" = "Information";
+
+//SettingsVC
+"Game Settings" = "Paramètres de Jeu";
+"Music Settings" = "Paramètres de Musique ";
+"Name:" = "Nom";
+"Field Size:" = "Taille de Champ";
+"Background Music:" = " Musique de Fond";
+"Sound Effect:" = " Effet Sonore ";
+"Enable Sound:" = " Activer le Son";
+"Vibration Tone:" = "Ton de Vibration";
+"Board Size:" = "Taille de Tableau:";
+"Play with friend" = "Jouer avec un ami";
+
+//"SelectBluetoothVC"
+"No Games" = "Pas de Jeux";
+//"new game" = "Jeu Nouveau";
+
+//"MessageV"
+"insert text" = "Insérer un texte";
+"Cancel" = "Annuler";
+
+//"SettingsMenuV"
+"Game" = "Jeu";
+"Music" = "Musique";
+
+//OnlineGameV
+"Waiting for opponent..." = "En attente de l'adversaire...";
+"Searching for game..." = "Recherche de jeu...";
+
+//selectBluetoothVC
+"Create new game" = "Créer un jeu nouveau";
+"Cancel" = "Annuler";
+"Create" = "Créer";
+"name" = "Nom";
+"Your opponent has left game!" = "Votre adversaire a quitté le jeu!";
+"Do you want to continue with bot?" = "Voulez-vous continuer avec bot?";
+"Continue with bot?" = "Continuer avec bot?";
+"Network problems" = "Problèmes de réseau ";
+"Please turn on wi-fi." = "S'il vous plaît activez wi-fi.";
+
+//Credits
+"Credits" = "Crédits";
+"Developed by:" = "Elaboré par:";
+"All music provided by Italian composer Andrea Carri:" = "Toute la musique est fournie par Andrea Carri, le compositeur italien:";
+
+//GameVC
+"Game finished" = "Jeu terminé";
+"Hide" = "Masquer";
+"YES" = "Oui";
+"NO" = "Non";
+"Well done. You won.\n Play again?" = "Bien fait. Vous avez gagné.Jouer à nouveau?";
+"Do not cheer up. Be a man.\n Try again?" = "Ne pas s’égayer. Soyez un homme.\n Réessayez?";
+"Not bad.\n Play again?" = "Pas mal.\n Jouer à nouveau?";
+"Do you want to skip tutorial?" = "Voulez-vous sauter le tutoriel?";
+"Message:" = "Message:";
+
+//Poster
+"You have just won. Would you like to share it?" = "Vous venez de gagner. Aimeriez-vous partager?";
+"Do you want to post?" = "Voulez-vous afficher?";
+"Post" = "Afficher";
+"Easy" = "Facile";
+"Middle" = "Milieu";
+"Hard" = "Dur";
+//OnlineGameV
+"Waiting..." = "Attente…";
+
+//About -
+"How to play" = "Comment jouer";
+"The objective is to construct a continuous series of players with exactly five characters of his color vertically, horizontally or diagonally.The game goes to infinite field. No fouls. Construction of a long series (5 or more consecutive pieces) brings victory.\n\n How to play:\nclick on the display and hold pressure,move item to the desired location, wait for locks your item and release" = "L'objectif est de construire une série continue de joueurs avec exactement cinq caractères de sa couleur verticalement, horizontalement ou en diagonale. Le jeu va au champ infini. Pas de fautes. Construction de longues séries (5 pièces consécutives ou plus) apporte la victoire. \n\nComment jouer: \ncliquez sur l'écran et maintenez la pression, déplacez l’élément à l'endroit souhaité, attendez que votre objet se verrouille et relâchez";
+//AnimationDoc
+"Press and..." = "Appuyez et...";
+"Move" = "Déplacer";
+"Wait for \nfixed" = "Attendre \nfixé";
+"Release" = "Relâcher";
+//levels
+"Beginner"="Facile";
+"Hard" = "Dur";
+"Medium" = "Milieu";
+"Player" = "Joueur";
+
+//AbstructV
+"Buy!" = "Achetez-le!";
+
+//Purchasing
+"You have successfully purchased %i hints" = "Vous avez réussi acheté %i conseils";
+"Buy hints" = "Acheter des notes";

@@ -1,0 +1,115 @@
+/* 
+  Localizable.strings
+  WildFive
+
+  Created by Lion User on 26/10/2012.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+
+//NewGameVC
+"Create Game" = "Создать Игру";
+"Find" = "Найти";
+"Online Game" = "Игра онлайн";
+"Offline" = "Игра офлайн";
+"Game Via Bluetooth" = "Играть через Bluetooth";
+"Back" = "Назад";
+"Restart" = "Сначала";
+
+//RootVC
+"New Game" = "Новая Игра";
+"Facebook" = "Facebook";
+"Twitter" = "Twitter";
+"Settings" = "Настройки";
+"About" = "Правила игри";
+
+//SettingsVC
+"Game Settings" = "Игровие настройки";
+"Music Settings" = "Музикальние настройки";
+"Name:" = "Имя";
+"Field Size:" = "Размер поля"; 
+"Background Music:" = "Фоновая музыка";
+"Sound Effect:" = "Звуковые эффекты";
+"Board Size:" = "Размер:";
+"Enable Sound:" = "вкл/выкл звуку";
+"Vibration Tone:" = "Вибрация";
+
+"Play with friend" = "Играть с другом";
+
+//SelectBluetoothVC
+"No Games" = "Нет Игр";
+
+//MessageV
+"insert text" = "вставить текст";
+"Cancel" = "Отменить";
+
+//SettingsMenuV
+"Game" = "Игра";
+"Music" = "Музыка";
+
+//Credits
+"Credits" = "Хвала";
+"Developed by:" = "Разработчики";
+"All music provided by Italian composer Andrea Carri:" = "Вся музыка предоставлена ​​итальянским композитором Андреа Карри:";
+
+//OnlineGameV
+"Waiting for opponent..." = "В ожидании соперника...";
+"Searching for game..." = "Поиск Игр...";
+
+//selectBluetoothVC
+"Create new game" = "Создать новую Игру";
+"Cancel" = "Отменить";
+"Create" = "Создать";
+"name" = "имя";
+"Your opponent has left game!" = "Ваш оппонент покинул игру!";
+"Do you want to continue with bot?" = "Хотите продолжить?";
+"Continue with bot?" = "Хотите продолжить?";
+"Network problems" = "Проблемы с сетью";
+"Please turn on wi-fi." = "Пожалуйста, включите Wi-Fi";
+
+//GameVC
+"Game finished" = "Кoнець игри";
+"Hide" = "Скрыть";
+"YES" = "Да";
+"NO" = "Нет";
+"Well done. You won.\n Play again?" = "Так держать.Ты выиграл!\nИграть еще?";
+"Do not cheer up. Be a man.\n Try again?" = "Будь мужчиной.Попробуй еще раз.\nГрати ще?";
+"Not bad.\n Play again?" = "Неплохо.\n Играть ище?";
+"Do you want to skip tutorial?" = "Пропустить?";
+"Message:" = "Cообщение:";
+//Poster
+"You have just won. Would you like to share it?" = "Хотите поделиться победой с друзьями?";
+"Post" = "Афишировать";
+"Easy" = "Начинающий";
+"Middle" = "Средний";
+"Hard" = "Тяжелый";
+
+//OnlineGameV
+"Waiting..." = "Подождите...";
+
+//About
+"How to play"="Правила игри";
+
+"The objective is to construct a continuous series of players with exactly five characters of his color vertically, horizontally or diagonally.The game goes to infinite field. No fouls. Construction of a long series (5 or more consecutive pieces) brings victory.\n\n How to play:\nclick on the display and hold pressure,move item to the desired location, wait for locks your item and release" = "Цель - сконструировать непрерывную цепочку с пяти символов одного цвета по - вертикали, по - горизонтали или по - диагонали.Поля, в игре, не имеют границ.Хто построит цепочку из 5 символе, тот и победил.\n\nКак играть:\nЩелкните по дисплею и удерживая, перемещайте элемент на желаемое место,подождите чтобы он зафиксировался и отпустите.";
+ 
+
+/*
+"The objective is to construct a continuous series of players with exactly five characters of his color vertically, horizontally or diagonally.The game goes to infinite field. No fouls. Construction of a long series (5 or more consecutive pieces) brings victory.  How to play: click on the display and hold pressure,move item to the desired location, wait for locks your item and release" = 
+"Цель - сконструировать непрерывную цепочку с пяти символов одного цвета по - вертикали, по - горизонтали или по - диагонали.Поля, в игре, не имеют границ.Хто построит цепочку из 5 символе, тот и победил.\n\nКак играть:\nЩелкните по дисплею и удерживая, перемещайте элемент на желаемое место,подождите чтобы он зафиксировался и отпустите.";*/
+"Show" = "Показать";
+//AnimationDoc
+"Press and..." = "Нажмите и...";
+"Move" = "Двигайте";
+"Wait for \nfixed" = "Ждите";
+"Release" = "Отпустите";
+
+//levels
+"Beginner"="Начинающий";
+"Hard" = "Тяжелый";
+"Medium" = "Средний";
+"Player" = "Игрок";
+
+//AbstructV
+"Buy!" = "Купить!";
+//Purchasing
+"You have successfully purchased %i hints" = "Вы успешно приобрели %i подсказок";
+"Buy hints" = "Kупить подсказки";

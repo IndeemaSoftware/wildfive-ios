@@ -1,20 +1,16 @@
-
-
+//
 //  main.m
 //  WildFive
 //
-//  Created by Volodymyr Shevchyk on 2/2/12.
-//  Copyright (c) 2012 XIO Games. All rights reserved.
+//  Created by Volodymyr Shevchyk Jr on 3/5/16.
+//  Copyright © 2016 Indeema Software Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "XAppDelegate.h"
-#import "XApplication.h"
+#import "AppDelegate.h"
 
-int main(int argc, char *argv[])
-{
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, NSStringFromClass([XApplication class]), NSStringFromClass([XAppDelegate class]));
-    [pool release];
-    return retVal;
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
 }

@@ -9,20 +9,10 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>WildFiveFree.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>67C30706164F1B5F009551E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8EB60FF014DAFBC9008931FE</key>
+		<key>05484E961C8B793C00BDDFF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

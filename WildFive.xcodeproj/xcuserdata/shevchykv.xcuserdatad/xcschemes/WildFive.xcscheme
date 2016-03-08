@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8EB60FF014DAFBC9008931FE"
+               BlueprintIdentifier = "05484E961C8B793C00BDDFF8"
                BuildableName = "WildFive.app"
                BlueprintName = "WildFive"
                ReferencedContainer = "container:WildFive.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8EB60FF014DAFBC9008931FE"
+            BlueprintIdentifier = "05484E961C8B793C00BDDFF8"
             BuildableName = "WildFive.app"
             BlueprintName = "WildFive"
             ReferencedContainer = "container:WildFive.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8EB60FF014DAFBC9008931FE"
+            BlueprintIdentifier = "05484E961C8B793C00BDDFF8"
             BuildableName = "WildFive.app"
             BlueprintName = "WildFive"
             ReferencedContainer = "container:WildFive.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8EB60FF014DAFBC9008931FE"
+            BlueprintIdentifier = "05484E961C8B793C00BDDFF8"
             BuildableName = "WildFive.app"
             BlueprintName = "WildFive"
             ReferencedContainer = "container:WildFive.xcodeproj">

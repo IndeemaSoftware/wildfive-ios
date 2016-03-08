@@ -2,11 +2,9 @@
 //  Global.h
 //  WildFive
 //
-//  Created by Volodymyr Shevchyk on 2/8/12.
-//  Copyright (c) 2012 XIO Games. All rights reserved.
+//  Created by Volodymyr Shevchyk Jr on 3/5/16.
+//  Copyright © 2016 Indeema Software Inc. All rights reserved.
 //
-
-
 
 #ifndef WildFive_Global_h
 #define WildFive_Global_h
@@ -30,12 +28,6 @@ if (Object != nil) {\
 
 #define TIME_OUT 60
 #define TIME_INTERVAL 86400
-#define RATE_MESSAGE_ONLY_FOR_FREE_VERSION NO
-//mopub defines
-
-#define PUB_ID_320x50 @"agltb3B1Yi1pbmNyDQsSBFNpdGUY7pPMFgw"
-#define PUB_ID_768x90 @"2475ffe8749811e281c11231392559e4"
-#define PUB_ID_FULL_SCREEN @"agltb3B1Yi1pbmNyDQsSBFNpdGUYmZXOFgw"
 
 #define HINT_COUNT @"hints_count"
 #define FULL_APP_VERSION_URL @""
@@ -67,7 +59,9 @@ if (Object != nil) {\
 #define WINS_MEDIUM_PLAYER  @"wins_medium_player"
 #define WINS_EASY_PLAYER    @"wins_easy_player"
 
-#define IS_IPHONE_5 ([UIScreen mainScreen].bounds.size.height == 568.0)
+#define IS_IPHONE_5 ([UIScreen mainScreen].bounds.size.height == 568.0f)
+#define IS_IPHONE_6 ([UIScreen mainScreen].bounds.size.height == 667.0f)
+#define IS_IPHONE_6P ([UIScreen mainScreen].bounds.size.height == 736.0f)
 #define IPHONE5_DIFF 88
 #define BUTTON_TEXT_SIZE_IPAD 30
 #define BUTTON_TEXT_SIZE_IPHONE 16
@@ -90,7 +84,19 @@ CG_INLINE NSString *deviceType()
 	return IPHONE;
 #endif
 }
-//define for declaring free or non free version
-#define FREE YES
+
+CG_INLINE NSString *imagePrefix() {
+    if (UIUserInterfaceIdiomPad == UI_USER_INTERFACE_IDIOM()) {
+        return @"_iPad";
+    } else if (IS_IPHONE_5) {
+        return @"_568h";
+    } else if (IS_IPHONE_6) {
+        return @"_667h";
+    } else if (IS_IPHONE_6P) {
+        return @"_736h";
+    } else {
+        return @"";
+    }
+}
 
 #endif

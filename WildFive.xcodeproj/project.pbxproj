@@ -23,6 +23,7 @@
 		059588AE1C8F233900F6E3E8 /* EEPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 059588AD1C8F233900F6E3E8 /* EEPlayerView.m */; };
 		059588B51C8F2A0900F6E3E8 /* EEBoardViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 059588B21C8F2A0900F6E3E8 /* EEBoardViewItem.m */; };
 		059588B61C8F2A0900F6E3E8 /* EEBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 059588B41C8F2A0900F6E3E8 /* EEBoardView.m */; };
+		059588BA1C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 059588B91C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.m */; };
 		05B0AE0B1C8B9B500069C263 /* EEFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B0AE0A1C8B9B500069C263 /* EEFlowViewController.m */; };
 		05B0AE121C8B9CE60069C263 /* EEMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B0AE0F1C8B9CE60069C263 /* EEMenuViewController.m */; };
 		05B0AE131C8B9CE60069C263 /* EEMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B0AE101C8B9CE60069C263 /* EEMenuViewController.xib */; };
@@ -64,6 +65,8 @@
 		059588B21C8F2A0900F6E3E8 /* EEBoardViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEBoardViewItem.m; sourceTree = "<group>"; };
 		059588B31C8F2A0900F6E3E8 /* EEBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEBoardView.h; sourceTree = "<group>"; };
 		059588B41C8F2A0900F6E3E8 /* EEBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEBoardView.m; sourceTree = "<group>"; };
+		059588B81C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEBoardCollectionViewLayoutFlow.h; sourceTree = "<group>"; };
+		059588B91C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEBoardCollectionViewLayoutFlow.m; sourceTree = "<group>"; };
 		05B0AE091C8B9B500069C263 /* EEFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEFlowViewController.h; path = ViewControllers/FlowViewController/EEFlowViewController.h; sourceTree = "<group>"; };
 		05B0AE0A1C8B9B500069C263 /* EEFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEFlowViewController.m; path = ViewControllers/FlowViewController/EEFlowViewController.m; sourceTree = "<group>"; };
 		05B0AE0C1C8B9B680069C263 /* EEFlowViewController_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEFlowViewController_hidden.h; path = ViewControllers/FlowViewController/EEFlowViewController_hidden.h; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 		059588AF1C8F2A0900F6E3E8 /* BoardView */ = {
 			isa = PBXGroup;
 			children = (
+				059588B71C8F2FD100F6E3E8 /* BoardCollectionViewLayoutFlow */,
 				059588B01C8F2A0900F6E3E8 /* BoardViewItem */,
 				059588B31C8F2A0900F6E3E8 /* EEBoardView.h */,
 				059588B41C8F2A0900F6E3E8 /* EEBoardView.m */,
@@ -246,6 +250,15 @@
 				059588B21C8F2A0900F6E3E8 /* EEBoardViewItem.m */,
 			);
 			path = BoardViewItem;
+			sourceTree = "<group>";
+		};
+		059588B71C8F2FD100F6E3E8 /* BoardCollectionViewLayoutFlow */ = {
+			isa = PBXGroup;
+			children = (
+				059588B81C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.h */,
+				059588B91C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.m */,
+			);
+			path = BoardCollectionViewLayoutFlow;
 			sourceTree = "<group>";
 		};
 		05B0AE081C8B9B2E0069C263 /* FlowViewController */ = {
@@ -383,6 +396,7 @@
 				0595889E1C8EFB6D00F6E3E8 /* EEBoard.m in Sources */,
 				05B0AE0B1C8B9B500069C263 /* EEFlowViewController.m in Sources */,
 				059588B61C8F2A0900F6E3E8 /* EEBoardView.m in Sources */,
+				059588BA1C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.m in Sources */,
 				059588A31C8EFBA600F6E3E8 /* EEBoardItem.m in Sources */,
 				059588AE1C8F233900F6E3E8 /* EEPlayerView.m in Sources */,
 				059588B51C8F2A0900F6E3E8 /* EEBoardViewItem.m in Sources */,

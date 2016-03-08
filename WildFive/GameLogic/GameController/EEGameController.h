@@ -25,11 +25,13 @@
 
 - (EEBoardSign)signAtPoint:(EEBoardPoint)point;
 - (EEPlayerType)playerTypeAtPoint:(EEBoardPoint)point;
+- (BOOL)isPointInsideGameBoardSize:(EEBoardPoint)point;
+- (BOOL)isBoardFreeAtPoint:(EEBoardPoint)point;
 - (BOOL)isActionAllowedForPlayer;
 
 - (void)resetGame;
-
-
+- (EEPutStatus)putValuesForPlayerAtPoint:(EEBoardPoint)point;
+- (EEPutStatus)putValuesForActivePlayerAtPoint:(EEBoardPoint)point;
 
 @end
 

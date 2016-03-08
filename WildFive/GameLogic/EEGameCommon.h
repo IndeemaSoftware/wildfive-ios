@@ -36,6 +36,12 @@ typedef NS_ENUM(NSInteger, EELineDirection) {
     EELineDirectionHVL
 };
 
+typedef NS_ENUM(NSInteger, EEPutStatus) {
+    EEPutStatusuccess,
+    EEPutStatusIsPointOutsideTheBoard,
+    EEPutStatusIsPointBusy
+};
+
 typedef struct  {
     NSUInteger width;
     NSUInteger height;

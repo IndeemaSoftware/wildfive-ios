@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WildFive/Custom/PlayerView/EEPlayerView.m"
-            timestampString = "479144081.565282"
+            filePath = "WildFive/Custom/BoardView/EEBoardView.m"
+            timestampString = "479149111.254045"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-updateSignImage"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

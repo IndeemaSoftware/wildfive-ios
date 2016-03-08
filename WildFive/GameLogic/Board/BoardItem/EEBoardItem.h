@@ -18,6 +18,7 @@
 - (NSUInteger)lineValueForPlayer:(EEPlayerType)playerType direction:(EELineDirection)lineDirection;
 - (void)setLineValue:(NSUInteger)value player:(EEPlayerType)playerType direction:(EELineDirection)lineDirection;
 - (void)addToLineValue:(NSUInteger)value player:(EEPlayerType)playerType direction:(EELineDirection)lineDirection;
+- (void)increamentLineValueForPlayer:(EEPlayerType)playerType direction:(EELineDirection)lineDirection;
 
 // position value
 - (NSUInteger)positionValueForPlayer:(EEPlayerType)playerType;

@@ -51,6 +51,11 @@
     [lLineArr replaceObjectAtIndex:lineDirection withObject:@(value + [(NSNumber*)lLineArr[lineDirection] unsignedIntegerValue])];
 }
 
+- (void)increamentLineValueForPlayer:(EEPlayerType)playerType direction:(EELineDirection)lineDirection {
+    NSMutableArray *lLineArr = [self lineArrayForPlayer:playerType];
+    [lLineArr replaceObjectAtIndex:lineDirection withObject:@(1 + [(NSNumber*)lLineArr[lineDirection] unsignedIntegerValue])];
+}
+
 - (NSUInteger)positionValueForPlayer:(EEPlayerType)playerType {
     if (playerType == EEPlayerTypeX) {
         return _playerXPositionValue;

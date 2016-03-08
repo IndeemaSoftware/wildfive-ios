@@ -14,10 +14,13 @@
 @interface EEBoard : NSObject
 
 @property (nonatomic, readonly) EEBoardSize boardSize;
+@property (nonatomic, readonly) NSInteger totalLines;
 
 - (instancetype)initWithBoardSize:(EEBoardSize)boardSize;
 - (EEBoardItem*)itemAtPoint:(EEBoardPoint)boardPoint;
 - (EEBoardItem*)firstItem;
 - (EEBoardItem*)lastItem;
+
+
 
 @end

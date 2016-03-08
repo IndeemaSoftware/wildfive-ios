@@ -14,7 +14,7 @@
     NSUInteger _attackFactor;
 }
 
-- (void)initializeBotDateForLevel:(EEBotLevel)botLevel;
+- (void)initializeBotDataForLevel:(EEBotLevel)botLevel;
 - (EEBoardPoint)findBestNextPositionForBot;
 - (EEBoardPoint)findBestPositionForPlayer:(EEPlayerType)playerType withAttackFactor:(NSUInteger)attackFactor;
 - (EEBoardPoint)randomPositionForCurrentBoard;
@@ -29,13 +29,13 @@
     if (self) {
         _botLevel = level;
 
-        [self initializeBotDateForLevel:_botLevel];
+        [self initializeBotDataForLevel:_botLevel];
     }
     return self;
 }
 
 #pragma mark - Private methods
-- (void)initializeBotDateForLevel:(EEBotLevel)botLevel {
+- (void)initializeBotDataForLevel:(EEBotLevel)botLevel {
     [self.player setPlayerName:NSLocalizedString(@"You", nil)];
     
     switch (botLevel) {

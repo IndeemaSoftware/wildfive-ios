@@ -11,7 +11,11 @@
 
 @interface EEBoard() {
     NSMutableArray *_boardArray;
+    
+    NSInteger _totalLines;
 }
+
++ (NSUInteger)totalLinsForBoardSize:(EEBoardSize)boardSize;
 
 @end
 
@@ -22,6 +26,7 @@
     self = [super init];
     if (self) {
         _boardSize = boardSize;
+        _totalLines = [EEBoard totalLinsForBoardSize:_boardSize];
         
         _boardArray = [[NSMutableArray alloc] init];
         
@@ -51,5 +56,10 @@
 }
 
 #pragma mark - Private methods
++ (NSUInteger)totalLinsForBoardSize:(EEBoardSize)boardSize {
+    NSInteger lMinWidth = boardSize.width - 4;
+    NSInteger lMinHeight = boardSize.height - 4;
+    return 2 * (boardSize.width * lMinHeight + boardSize.height * lMinWidth + 2 * (lMinWidth * lMinHeight));
+}
 
 @end

@@ -73,6 +73,14 @@
     return [_gameController signAtPoint:point];
 }
 
+- (BOOL)boardViewPlayerCanPutNewSign:(EEBoardView*)boardView {
+    return [_gameController isActionAllowedForPlayer];
+}
+
+- (void)boardView:(EEBoardView*)boardView playerSetNewSignAtPoint:(EEBoardPoint)point {
+    [_gameController putValuesForPlayerAtPoint:point];
+}
+
 #pragma mark - EEGameController delegate methods
 - (void)EEGameController:(EEGameController*)gameController updateCellAtPoint:(EEBoardPoint)point {
     [_boardView reloadDataAtPoint:point];

@@ -13,6 +13,7 @@
 @interface EEBoardViewItem : UICollectionViewCell
 
 @property (nonatomic, assign) EEBoardSign boardSign;
+@property (nonatomic, copy) NSString *title;
 
 + (NSString*)reuseIdentifier;
 

@@ -10,9 +10,11 @@
 
 @interface EEBoardViewItem() {
     UIImageView *_imageView;
+    UILabel *_titleLabel;
 }
 
 - (UIImageView*)imageView;
+- (UILabel*)titleLabel;
 - (void)updateImageViewImage;
 @end
 
@@ -22,6 +24,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.imageView setFrame:self.bounds];
+    [self.titleLabel setFrame:self.bounds];
 }
 
 + (NSString*)reuseIdentifier {
@@ -34,6 +37,11 @@
     [self updateImageViewImage];
 }
 
+- (void)setTitle:(NSString *)title {
+    _title = title;
+    [self.titleLabel setText:_title];
+}
+
 #pragma mark - Private methods
 - (UIImageView*)imageView {
     if (_imageView == nil) {
@@ -42,6 +50,19 @@
         [self addSubview:_imageView];
     }
     return _imageView;
+}
+
+- (UILabel*)titleLabel {
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] init];
+        [_titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [_titleLabel setFont:[UIFont systemFontOfSize:10.0f]];
+        [_titleLabel setAdjustsFontSizeToFitWidth:YES];
+        [_titleLabel setMinimumScaleFactor:0.5];
+        
+//        [self addSubview:_titleLabel];
+    }
+    return _titleLabel;
 }
 
 - (void)updateImageViewImage {

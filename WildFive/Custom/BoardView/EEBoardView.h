@@ -27,5 +27,7 @@
 
 - (EEBoardSize)boardSizeBoardView:(EEBoardView*)boardView;
 - (EEBoardSign)boardView:(EEBoardView*)boardView boardSignAtPoint:(EEBoardPoint)point;
+- (BOOL)boardViewPlayerCanPutNewSign:(EEBoardView*)boardView;
+- (void)boardView:(EEBoardView*)boardView playerSetNewSignAtPoint:(EEBoardPoint)point;
 
 @end

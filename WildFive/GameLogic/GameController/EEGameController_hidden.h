@@ -21,12 +21,17 @@
     EEPlayer *_opponentPlayer;
     EEPlayer *_activePlayer;
     
+    NSUInteger _totalLines;
+    
     @private
 }
 
 - (void)initializeGameWithDefaulValues;
-- (BOOL)isPointInsideGameBoardSize:(EEBoardPoint)point;
+- (void)changeActivePlayer;
+
+- (EEPutStatus)putValuesForPlayer:(EEPlayer*)player atPoint:(EEBoardPoint)point;
+- (void)updateLineValuesForPlayer:(EEPlayer*)player atPoint:(EEBoardPoint)point;
 
 + (BOOL)isPoint:(EEBoardPoint)point insideBoardSize:(EEBoardSize)boardSize;
-
++ (NSUInteger)totalLinsForBoardSize:(EEBoardSize)boardSize;
 @end

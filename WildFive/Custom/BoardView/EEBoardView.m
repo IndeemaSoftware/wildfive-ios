@@ -8,16 +8,15 @@
 
 #import "EEBoardView.h"
 #import "EEBoardViewItem.h"
-
-
+#import "EEBoardCollectionViewLayoutFlow.h"
 
 @interface EEBoardView() <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout> {
     UICollectionView *_collectionView;
-    UICollectionViewFlowLayout *_collectionViewLayoutFlow;
+    EEBoardCollectionViewLayoutFlow *_collectionViewLayoutFlow;
 }
 
 - (UICollectionView*)collectionView;
-- (UICollectionViewFlowLayout*)collectionViewLayoutFlow;
+- (EEBoardCollectionViewLayoutFlow*)collectionViewLayoutFlow;
 
 @end
 
@@ -54,7 +53,7 @@
         [_collectionView setDataSource:self];
         
         [_collectionView setScrollEnabled:NO];
-        [_collectionView setUserInteractionEnabled:NO];
+//        [_collectionView setUserInteractionEnabled:NO];
         [_collectionView registerClass:[EEBoardViewItem class] forCellWithReuseIdentifier:[EEBoardViewItem reuseIdentifier]];
         
         [self addSubview:_collectionView];
@@ -62,11 +61,11 @@
     return _collectionView;
 }
 
-- (UICollectionViewFlowLayout*)collectionViewLayoutFlow {
+- (EEBoardCollectionViewLayoutFlow*)collectionViewLayoutFlow {
     if (_collectionViewLayoutFlow == nil) {
-        _collectionViewLayoutFlow = [[UICollectionViewFlowLayout alloc] init];
-        [_collectionViewLayoutFlow setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        [_collectionViewLayoutFlow setItemSize:CGSizeMake(30.0f, 30.0f)];
+        _collectionViewLayoutFlow = [[EEBoardCollectionViewLayoutFlow alloc] init];
+        [_collectionViewLayoutFlow setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [_collectionViewLayoutFlow setItemSize:CGSizeMake(15.0f, 15.0f)];
     }
     return _collectionViewLayoutFlow;
 }
@@ -89,19 +88,15 @@
         [lCell setBoardSign:EEBoardSignNone];
     }
     
+    [lCell setTitle:[NSString stringWithFormat:@"%i%i", indexPath.item, indexPath.section]];
+    
     return lCell;
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0.0f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 0.0f;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.frame.size.width / _boardSize.width, self.frame.size.height / _boardSize.height);
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.delegate != nil) {
+        [self.delegate boardView:self playerSetNewSignAtPoint:EEBoardPointMake(indexPath.item, indexPath.section)];
+    }
 }
 
 @end

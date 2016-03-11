@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0502A8A51C8EE80D00F70210 /* EEBotGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0502A8A41C8EE80D00F70210 /* EEBotGameController.m */; };
+		051275CB1C919BF50061F0AE /* EEMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 051275CA1C919BF50061F0AE /* EEMove.m */; };
+		051275D01C92D3A30061F0AE /* EEBot.m in Sources */ = {isa = PBXBuildFile; fileRef = 051275CF1C92D3A30061F0AE /* EEBot.m */; };
 		05484E9C1C8B793C00BDDFF8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05484E9B1C8B793C00BDDFF8 /* main.m */; };
 		05484E9F1C8B793C00BDDFF8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05484E9E1C8B793C00BDDFF8 /* AppDelegate.m */; };
 		05484EA71C8B793C00BDDFF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05484EA61C8B793C00BDDFF8 /* Assets.xcassets */; };
@@ -36,6 +38,12 @@
 		0502A8A31C8EE80D00F70210 /* EEBotGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEBotGameController.h; path = GameLogic/BotGameController/EEBotGameController.h; sourceTree = "<group>"; };
 		0502A8A41C8EE80D00F70210 /* EEBotGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEBotGameController.m; path = GameLogic/BotGameController/EEBotGameController.m; sourceTree = "<group>"; };
 		0502A8A61C8EEC8E00F70210 /* EEGameController_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEGameController_hidden.h; path = GameLogic/GameController/EEGameController_hidden.h; sourceTree = "<group>"; };
+		051275C91C919BF50061F0AE /* EEMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEMove.h; path = GameLogic/Move/EEMove.h; sourceTree = "<group>"; };
+		051275CA1C919BF50061F0AE /* EEMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEMove.m; path = GameLogic/Move/EEMove.m; sourceTree = "<group>"; };
+		051275CC1C919C430061F0AE /* EEGameHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EEGameHeaders.h; path = GameLogic/EEGameHeaders.h; sourceTree = "<group>"; };
+		051275CE1C92D3A30061F0AE /* EEBot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEBot.h; path = GameLogic/Bot/EEBot.h; sourceTree = "<group>"; };
+		051275CF1C92D3A30061F0AE /* EEBot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEBot.m; path = GameLogic/Bot/EEBot.m; sourceTree = "<group>"; };
+		051275D11C92D83F0061F0AE /* EEBoardItem_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEBoardItem_hidden.h; path = GameLogic/Board/BoardItem/EEBoardItem_hidden.h; sourceTree = "<group>"; };
 		05484E971C8B793C00BDDFF8 /* WildFive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WildFive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05484E9B1C8B793C00BDDFF8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05484E9D1C8B793C00BDDFF8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -99,6 +107,24 @@
 				0502A8A41C8EE80D00F70210 /* EEBotGameController.m */,
 			);
 			name = BotGameController;
+			sourceTree = "<group>";
+		};
+		051275C81C919BD10061F0AE /* Move */ = {
+			isa = PBXGroup;
+			children = (
+				051275C91C919BF50061F0AE /* EEMove.h */,
+				051275CA1C919BF50061F0AE /* EEMove.m */,
+			);
+			name = Move;
+			sourceTree = "<group>";
+		};
+		051275CD1C92D3910061F0AE /* Bot */ = {
+			isa = PBXGroup;
+			children = (
+				051275CE1C92D3A30061F0AE /* EEBot.h */,
+				051275CF1C92D3A30061F0AE /* EEBot.m */,
+			);
+			name = Bot;
 			sourceTree = "<group>";
 		};
 		05484E8E1C8B793C00BDDFF8 = {
@@ -209,6 +235,7 @@
 			children = (
 				059588A11C8EFBA600F6E3E8 /* EEBoardItem.h */,
 				059588A21C8EFBA600F6E3E8 /* EEBoardItem.m */,
+				051275D11C92D83F0061F0AE /* EEBoardItem_hidden.h */,
 			);
 			name = BoardItem;
 			sourceTree = "<group>";
@@ -295,7 +322,10 @@
 		05B0AE1A1C8BB4F50069C263 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
+				051275CC1C919C430061F0AE /* EEGameHeaders.h */,
 				05B0AE231C8BB9490069C263 /* EEGameCommon.h */,
+				051275CD1C92D3910061F0AE /* Bot */,
+				051275C81C919BD10061F0AE /* Move */,
 				059588A51C8F1CC300F6E3E8 /* Player */,
 				0595889B1C8EFB3D00F6E3E8 /* Board */,
 				0502A8A21C8EE7E900F70210 /* BotGameController */,
@@ -394,6 +424,8 @@
 				05484E9F1C8B793C00BDDFF8 /* AppDelegate.m in Sources */,
 				059588A81C8F1CE300F6E3E8 /* EEPlayer.m in Sources */,
 				0595889E1C8EFB6D00F6E3E8 /* EEBoard.m in Sources */,
+				051275CB1C919BF50061F0AE /* EEMove.m in Sources */,
+				051275D01C92D3A30061F0AE /* EEBot.m in Sources */,
 				05B0AE0B1C8B9B500069C263 /* EEFlowViewController.m in Sources */,
 				059588B61C8F2A0900F6E3E8 /* EEBoardView.m in Sources */,
 				059588BA1C8F2FD100F6E3E8 /* EEBoardCollectionViewLayoutFlow.m in Sources */,

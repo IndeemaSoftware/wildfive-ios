@@ -14,4 +14,7 @@
 
 - (instancetype)initWithBotLevel:(EEBotLevel)level;
 
+- (void)startBot;
+- (void)stopBot;
+
 @end

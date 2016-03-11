@@ -11,6 +11,7 @@
 #import "EEGameCommon.h"
 
 @class EEPlayer;
+@class EEMove;
 @protocol EEGameControllerDelegate;
 
 @interface EEGameController : NSObject
@@ -28,14 +29,19 @@
 - (BOOL)isPointInsideGameBoardSize:(EEBoardPoint)point;
 - (BOOL)isBoardFreeAtPoint:(EEBoardPoint)point;
 - (BOOL)isActionAllowedForPlayer;
+- (BOOL)isPlayerActive;
+- (BOOL)isOpponentPlayerActive;
+- (BOOL)isGameFinished;
 
 - (void)resetGame;
-- (EEPutStatus)putValuesForPlayerAtPoint:(EEBoardPoint)point;
-- (EEPutStatus)putValuesForActivePlayerAtPoint:(EEBoardPoint)point;
+
+- (EEMoveStatus)makeMove:(EEMove*)move;
 
 @end
 
 @protocol EEGameControllerDelegate <NSObject>
-- (void)EEGameController:(EEGameController*)gameController updateCellAtPoint:(EEBoardPoint)point;
+@optional
+- (void)EEGameController:(EEGameController*)gameController updatedItemAtPoint:(EEBoardPoint)point;
 - (void)EEGameController:(EEGameController*)gameController activePlayerHasChanged:(EEPlayer*)activePlayer;
+- (void)EEGameController:(EEGameController*)gameController gameFinished:(EEFinishResult)winResult;
 @end

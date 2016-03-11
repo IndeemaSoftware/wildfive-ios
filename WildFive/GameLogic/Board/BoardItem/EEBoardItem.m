@@ -7,6 +7,7 @@
 //
 
 #import "EEBoardItem.h"
+#import "EEBoardItem_hidden.h"
 
 @interface EEBoardItem() {
     NSMutableArray *_playerXLineArr;
@@ -38,6 +39,24 @@
     return self;
 }
 
+- (NSUInteger)positionValueForPlayer:(EEPlayerType)playerType {
+    if (playerType == EEPlayerTypeX) {
+        return _playerXPositionValue;
+    } else {
+        return _playerOPositionValue;
+    }
+}
+
+#pragma mark - Private methods
+
+- (void)setBoardSignValue:(EEBoardSign)boardSign {
+    _boardSign = boardSign;
+}
+
+- (void)setPlayerTypeValue:(EEPlayerType)playerType {
+    _playerType = playerType;
+}
+
 - (NSUInteger)lineValueForPlayer:(EEPlayerType)playerType direction:(EELineDirection)lineDirection {
     return [(NSNumber*)[self lineArrayForPlayer:playerType][lineDirection] unsignedIntegerValue];
 }
@@ -51,17 +70,12 @@
     [lLineArr replaceObjectAtIndex:lineDirection withObject:@(value + [(NSNumber*)lLineArr[lineDirection] unsignedIntegerValue])];
 }
 
-- (void)increamentLineValueForPlayer:(EEPlayerType)playerType direction:(EELineDirection)lineDirection {
+- (NSUInteger)increamentLineValueForPlayer:(EEPlayerType)playerType direction:(EELineDirection)lineDirection {
     NSMutableArray *lLineArr = [self lineArrayForPlayer:playerType];
-    [lLineArr replaceObjectAtIndex:lineDirection withObject:@(1 + [(NSNumber*)lLineArr[lineDirection] unsignedIntegerValue])];
-}
-
-- (NSUInteger)positionValueForPlayer:(EEPlayerType)playerType {
-    if (playerType == EEPlayerTypeX) {
-        return _playerXPositionValue;
-    } else {
-        return _playerOPositionValue;
-    }
+    NSUInteger lNewValue = 1 + [(NSNumber*)lLineArr[lineDirection] unsignedIntegerValue];
+    [lLineArr replaceObjectAtIndex:lineDirection withObject:@(lNewValue)];
+    
+    return lNewValue;
 }
 
 - (void)addPpositionValue:(NSUInteger)value forPlayer:(EEPlayerType)playerType {
@@ -72,7 +86,6 @@
     }
 }
 
-#pragma mark - Private methods
 - (NSMutableArray*)lineArrayForPlayer:(EEPlayerType)playerType {
     if (playerType == EEPlayerTypeX) {
         return _playerXLineArr;

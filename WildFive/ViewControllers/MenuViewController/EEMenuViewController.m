@@ -14,7 +14,7 @@
 #import "EEMenuViewController.h"
 
 #import "EEGameViewController.h"
-#import "EEGameController.h"
+#import "EEBotGameController.h"
 
 #import "AppDelegate.h"
 
@@ -117,7 +117,7 @@
 }
 
 - (IBAction)localNetworkButtonPressed:(id)pSender {
-    EEGameController *lGameController = [[EEGameController alloc] init];
+    EEBotGameController *lGameController = [[EEBotGameController alloc] initWithBotLevel:EEBotHard];
     EEGameViewController *lGameViewController = [[EEGameViewController alloc] initWithGame:lGameController];
     
     [self.navigationController pushViewController:lGameViewController animated:YES];

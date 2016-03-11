@@ -50,7 +50,7 @@
 - (void)setActive:(BOOL)active {
     _active = active;
     
-    [self setAlpha:(active ? 1.0f : 0.6f)];
+    [_nameLabel setHighlighted:_active];
 }
 
 - (void)layoutSubviews {
@@ -76,6 +76,7 @@
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
         [_nameLabel setBackgroundColor:[UIColor clearColor]];
+        [_nameLabel setHighlightedTextColor:[UIColor greenColor]];
         
         [self addSubview:_nameLabel];
     }

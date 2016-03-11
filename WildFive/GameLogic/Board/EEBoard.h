@@ -10,17 +10,31 @@
 #import "EEGameCommon.h"
 
 @class EEBoardItem;
+@class EEMove;
 
 @interface EEBoard : NSObject
 
 @property (nonatomic, readonly) EEBoardSize boardSize;
 @property (nonatomic, readonly) NSInteger totalLines;
 
-- (instancetype)initWithBoardSize:(EEBoardSize)boardSize;
+@property (nonatomic, readonly) NSArray *positionWeights;
+
+- (instancetype)initWithBoardSize:(EEBoardSize)boardSize positionWeights:(NSArray*)positionWeights;
+
+// Items
 - (EEBoardItem*)itemAtPoint:(EEBoardPoint)boardPoint;
 - (EEBoardItem*)firstItem;
 - (EEBoardItem*)lastItem;
+- (BOOL)hasFreeItems;
 
+// Updates
+- (EEMoveStatus)updateBoardValuesWithMove:(EEMove*)move;
 
+// winner
+- (EEFinishResult)checkForWinner;
+- (EEFinishResult)checkForWinnerForMove:(EEMove*)move;
+
+// Utils
++ (NSUInteger)totalLinsForBoardSize:(EEBoardSize)boardSize;
 
 @end

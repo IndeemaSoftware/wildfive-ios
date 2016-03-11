@@ -9,6 +9,8 @@
 #import "EEGameController.h"
 #import "EEBoard.h"
 #import "EEBoardItem.h"
+#import "EEMove.h"
+
 #import "EEPlayer_hidden.h"
 
 @interface EEGameController ()  {
@@ -16,22 +18,28 @@
     EEBoard *_board;
     
     EEBoardSize _boardSize;
+    EEGameStatus _gameStatus;
+
     
     EEPlayer *_player;
     EEPlayer *_opponentPlayer;
     EEPlayer *_activePlayer;
     
-    NSUInteger _totalLines;
-    
     @private
 }
 
-- (void)initializeGameWithDefaulValues;
+- (instancetype)initGameController;
+
 - (void)changeActivePlayer;
+- (void)changeActivePlayerAndNotifiDelegate;
 
-- (EEPutStatus)putValuesForPlayer:(EEPlayer*)player atPoint:(EEBoardPoint)point;
-- (void)updateLineValuesForPlayer:(EEPlayer*)player atPoint:(EEBoardPoint)point;
+// Delegate methods
+- (void)sendToDelegateActivePlayer;
+- (void)sendToDelegateUpdatePoint:(EEBoardPoint)point;
+- (void)sendToDelegateFinishResults:(EEFinishResult)finishResults;
 
-+ (BOOL)isPoint:(EEBoardPoint)point insideBoardSize:(EEBoardSize)boardSize;
-+ (NSUInteger)totalLinsForBoardSize:(EEBoardSize)boardSize;
+- (void)delegateRequiresSelector:(SEL)selector;
+
+// Utils
+
 @end

@@ -13,11 +13,8 @@
 
 #pragma mark - Public methods
 - (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self initializeGameWithDefaulValues];
-    }
-    return self;
+    NSAssert(NO, @"You are not able to create instance of that class dirrectly.");
+    return nil;
 }
 
 - (EEBoardSign)signAtPoint:(EEBoardPoint)point {
@@ -37,7 +34,7 @@
 }
 
 - (BOOL)isPointInsideGameBoardSize:(EEBoardPoint)point {
-    return [EEGameController isPoint:point insideBoardSize:_boardSize];
+    return EEBoardPointIsInsideBoard(point, _boardSize);
 }
 
 - (BOOL)isBoardFreeAtPoint:(EEBoardPoint)point {
@@ -49,150 +46,116 @@
 }
 
 - (BOOL)isActionAllowedForPlayer {
-    return (_activePlayer.type == _player.type);
+    return [self isPlayerActive] && ![self isGameFinished];
+}
+
+- (BOOL)isPlayerActive {
+    return (_player.type == _activePlayer.type);
+}
+
+- (BOOL)isOpponentPlayerActive {
+    return (_opponentPlayer.type == _activePlayer.type);
+}
+
+- (BOOL)isGameFinished {
+    return (_gameStatus == EEGameStatusFinish);
 }
 
 - (void)resetGame {
     _activePlayer = _player;
-    
-    _board = [[EEBoard alloc] initWithBoardSize:_boardSize];
-    
-    _totalLines = [EEGameController totalLinsForBoardSize:_boardSize];
+    _gameStatus = EEGameStatusActive;
 }
 
-- (EEPutStatus)putValuesForPlayerAtPoint:(EEBoardPoint)point {
-    return [self putValuesForPlayer:_player atPoint:point];
-}
-
-- (EEPutStatus)putValuesForActivePlayerAtPoint:(EEBoardPoint)point {
-    return [self putValuesForPlayer:_activePlayer atPoint:point];
+- (EEMoveStatus)makeMove:(EEMove*)move {
+    // check for game status and return an error if game is finished
+    if ([self isGameFinished]) {
+        return EEMoveStatusGameFinished;
+    }
+    
+    // update board values with possible returned errors
+    EEMoveStatus lMoveStatus = [_board updateBoardValuesWithMove:move];
+    if (lMoveStatus != EEMoveStatusSuccess) {
+        return lMoveStatus;
+    }
+    
+    //notifi delegate about update in board
+    [self sendToDelegateUpdatePoint:move.point];
+    
+    // check if we have winner
+    EEFinishResult lFinishResult = [_board checkForWinnerForMove:move];
+    if (lFinishResult.hasWinner) {
+        _gameStatus = EEGameStatusFinish;
+        
+        
+    } else {
+        // check for possible turns and free points/items
+        if ((_board.totalLines <= 0) || ![_board hasFreeItems]) {
+            _gameStatus = EEGameStatusFinish;
+        }
+        
+        [self changeActivePlayerAndNotifiDelegate];
+    }
+    
+    return EEMoveStatusSuccess;
 }
 
 #pragma mark - Private methods
-- (void)initializeGameWithDefaulValues {
-    _player = [[EEPlayer alloc] initWithName:NSLocalizedString(@"Player 1", nil) type:EEPlayerTypeX];
-    _opponentPlayer = [[EEPlayer alloc] initWithName:NSLocalizedString(@"Player 2", nil) type:EEPlayerTypeO];
-    _activePlayer = _player;
-    
-    _boardSize = EEBoardSizeMake(19, 19);
-    
-    _board = [[EEBoard alloc] initWithBoardSize:_boardSize];
+- (instancetype)initGameController {
+    self = [super init];
+    if (self) {
+
+    }
+    return self;
 }
 
 - (void)changeActivePlayer {
-    if (_activePlayer.type == _player.type) {
+    if ([self isPlayerActive]) {
         _activePlayer = _opponentPlayer;
     } else {
         _activePlayer = _player;
     }
-    
-    [self.delegate EEGameController:self activePlayerHasChanged:_activePlayer];
 }
 
-- (EEPutStatus)putValuesForPlayer:(EEPlayer*)player atPoint:(EEBoardPoint)point {
-    // check if point is inside the board
-    if (![self isPointInsideGameBoardSize:point]) {
-        return EEPutStatusIsPointOutsideTheBoard;
-    }
-    
-    // get board item
-    EEBoardItem *lBoardItem = [_board itemAtPoint:point];
-    
-    // check if point is free
-    if (lBoardItem.boardSign != EEBoardSignNone) {
-        return EEPutStatusIsPointBusy;
-    }
-    
-    // update board value
-    lBoardItem.playerType = player.type;
-    if (player.type == EEPlayerTypeX) {
-        lBoardItem.boardSign = EEBoardSignX;
-    } else {
-        lBoardItem.boardSign = EEBoardSignO;
-    }
-    
-    //notifi delegate about update in board
-    [self.delegate EEGameController:self updateCellAtPoint:point];
-    
-    // update lines values
-    
-    // check if we have winner
-    
-    // check for available turns
-    
-    // update position values
-    
+- (void)changeActivePlayerAndNotifiDelegate {
     [self changeActivePlayer];
-    
-    return EEPutStatusuccess;
+    [self sendToDelegateActivePlayer];
 }
 
-- (void)updateLineValuesForPlayer:(EEPlayer*)player atPoint:(EEBoardPoint)point {
-    EEPlayerType lPlayerType = player.type;
-    
-    for (NSUInteger offset = 0; offset < 5; offset++) {
-        // direction - from left to right ---------------------------------
-        EEBoardPoint lCurrentPoint = EEBoardPointMake(point.x - offset, point.y);
-        
-        if ([self isPointInsideGameBoardSize:lCurrentPoint]) {
-            EEBoardItem *lItem = [_board itemAtPoint:lCurrentPoint];
-            [lItem increamentLineValueForPlayer:lPlayerType direction:EELineDirectionH];
-            
-            if (1 == [lItem lineValueForPlayer:lPlayerType direction:EELineDirectionH]) {
-                _totalLines--;
-            }
+- (void)sendToDelegateActivePlayer {
+    if (self.delegate != nil) {
+        if ([self.delegate respondsToSelector:@selector(EEGameController:activePlayerHasChanged:)]) {
+            [self.delegate EEGameController:self activePlayerHasChanged:_activePlayer];
         }
-        
-        
-        //from left top to bottom right ---------------------------------
-        lCurrentPoint = EEBoardPointMake(point.x - offset, point.y - offset);
-        
-        if ([self isPointInsideGameBoardSize:lCurrentPoint]) {
-            EEBoardItem *lItem = [_board itemAtPoint:lCurrentPoint];
-            [lItem increamentLineValueForPlayer:lPlayerType direction:EELineDirectionHVR];
-            
-            if (1 == [lItem lineValueForPlayer:lPlayerType direction:EELineDirectionHVR]) {
-                _totalLines--;
-            }
-        }
-        
-        
-        // direction - from right top to bottom left  ---------------------------------
-        lCurrentPoint = EEBoardPointMake(point.x + offset, point.y - offset);
-        
-        if ([self isPointInsideGameBoardSize:lCurrentPoint]) {
-            EEBoardItem *lItem = [_board itemAtPoint:lCurrentPoint];
-            [lItem increamentLineValueForPlayer:lPlayerType direction:EELineDirectionHVL];
-            
-            if (1 == [lItem lineValueForPlayer:lPlayerType direction:EELineDirectionHVL]) {
-                _totalLines--;
-            }
-        }
-        
-        
-        // direction - from top to bottom  ---------------------------------
-        lCurrentPoint = EEBoardPointMake(point.x, point.y - offset);
-        
-        if ([self isPointInsideGameBoardSize:lCurrentPoint]) {
-            EEBoardItem *lItem = [_board itemAtPoint:lCurrentPoint];
-            [lItem increamentLineValueForPlayer:lPlayerType direction:EELineDirectionV];
-            
-            if (1 == [lItem lineValueForPlayer:lPlayerType direction:EELineDirectionV]) {
-                _totalLines--;
-            }
-        }
+    } else {
+        DLog(@"EEGameController has no delegate!!!");
     }
+}
+
+- (void)sendToDelegateUpdatePoint:(EEBoardPoint)point {
+    if (self.delegate != nil) {
+        if ([self.delegate respondsToSelector:@selector(EEGameController:updatedItemAtPoint:)]) {
+            [self.delegate EEGameController:self updatedItemAtPoint:point];
+        }
+    } else {
+        DLog(@"EEGameController has no delegate!!!");
+    }
+}
+
+- (void)sendToDelegateFinishResults:(EEFinishResult)finishResults {
+    if (self.delegate != nil) {
+        if ([self.delegate respondsToSelector:@selector(EEGameController:activePlayerHasChanged:)]) {
+            [self.delegate EEGameController:self gameFinished:finishResults];
+        }
+    } else {
+        DLog(@"EEGameController has no delegate!!!");
+    }
+}
+
+- (void)delegateRequiresSelector:(SEL)selector {
+    NSAssert2([self.delegate respondsToSelector:selector], @"EEGameController required delegate's methods %@ not found in Delegate %@", NSStringFromSelector(selector), self.delegate);
 }
 
 #pragma mark - Private Class methods
-+ (BOOL)isPoint:(EEBoardPoint)point insideBoardSize:(EEBoardSize)boardSize {
-    return (point.x < boardSize.width) && (point.y < boardSize.height);
-}
 
-+ (NSUInteger)totalLinsForBoardSize:(EEBoardSize)boardSize {
-    NSInteger lMinWidth = boardSize.width - 4;
-    NSInteger lMinHeight = boardSize.height - 4;
-    return 2 * (boardSize.width * lMinHeight + boardSize.height * lMinWidth + 2 * (lMinWidth * lMinHeight));
-}
 
 @end

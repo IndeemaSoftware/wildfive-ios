@@ -20,6 +20,6 @@
 
 - (instancetype)initWithLevel:(EEBotLevel)level board:(EEBoard*)board botPlayerType:(EEPlayer*)botPlayer;
 
-- (EEBoardPoint)findBestNextPositionForBot;
+- (EEBoardPoint)findBestNextPosition;
 
 @end

@@ -46,6 +46,8 @@ typedef struct  {
 - (instancetype)initWithBoardSize:(EEBoardSize)boardSize positionWeights:(NSArray*)positionWeights {
     self = [super init];
     if (self) {
+        NSAssert(((boardSize.width >= 10) && (boardSize.height >= 10)), @"EEBoard. Board min size should be: 10x10");
+        
         _boardSize = boardSize;
         _totalLines = [EEBoard totalLinsForBoardSize:_boardSize];
         
@@ -82,18 +84,15 @@ typedef struct  {
 }
 
 - (BOOL)hasFreeItems {
-    BOOL lReturn = NO;
-    
     for (NSUInteger x = 0; x < _boardSize.width; x++) {
         for (NSUInteger y = 0; y < _boardSize.height; y++) {
             if ([self itemAtPoint:EEBoardPointMake(x, y)].playerType == EEPlayerTypeNone) {
-                lReturn = YES;
-                break;
+                return YES;
             }
         }
     }
     
-    return lReturn;
+    return NO;
 }
 
 #pragma mark Updates
@@ -142,7 +141,7 @@ typedef struct  {
                         lWinResult.lineDirection = lineDirection;
                         lWinResult.lineLenght = lTempLineValue;
                         
-                        break;
+                        return lWinResult;
                     }
                 }
             }
@@ -159,50 +158,39 @@ typedef struct  {
     EEBoardPoint lTempPoint = move.point;
     
     EEPlayerType lPlayerType = move.player.type;
-    EEBoardPoint lBottomOffsetPoint = EEBoardPointMake(move.point.x + 4, move.point.y + 4);
+    EEBoardPoint lBottomOffsetPoint = EEBoardPointMake(4, 4);
     EEBoardPoint lTopOffsetPoint = EEBoardPointMake(_boardSize.width - 4, _boardSize.height - 4);
     
     for (NSInteger offset = 4; offset >= 0; offset--) {
-        // direction - from left to right ---------------------------------
-        lTempPoint = EEBoardPointMake(move.point.x - offset, move.point.y);
-        
-        if ((lTempPoint.x >= 0) && (lTempPoint.x < lTopOffsetPoint.x)) {
-            lWinResult = [self checkForWinnerForPlayerType:lPlayerType atPoint:lTempPoint direction:EELineDirectionH];
-            if (lWinResult.hasWinner) {
-                break;
+        for (EELineDirection lineDirection = EELineDirectionH; lineDirection <= EELineDirectionHVL; lineDirection++) {
+            
+            BOOL lIsInsideBoard = NO;
+            
+            if (lineDirection == EELineDirectionH) {
+                lTempPoint = EEBoardPointMake(move.point.x - offset, move.point.y);
+                lIsInsideBoard = ((lTempPoint.x >= 0) && (lTempPoint.x < lTopOffsetPoint.x));
+                
+            } else if (lineDirection == EELineDirectionHVR) {
+                lTempPoint = EEBoardPointMake(move.point.x - offset, move.point.y - offset);
+                lIsInsideBoard = ((lTempPoint.x >= 0) && (lTempPoint.x < lTopOffsetPoint.x) && (lTempPoint.y >= 0) && (lTempPoint.y < lTopOffsetPoint.y));
+                
+            } else if (lineDirection == EELineDirectionHVL) {
+                lTempPoint = EEBoardPointMake(move.point.x + offset, move.point.y - offset);
+                lIsInsideBoard = ((lTempPoint.x >= lBottomOffsetPoint.x) && (lTempPoint.x < _boardSize.width) && (lTempPoint.y >= 0) && (lTempPoint.y < lTopOffsetPoint.y));
+                
+            } else if (lineDirection == EELineDirectionV) {
+                lTempPoint = EEBoardPointMake(move.point.x, move.point.y - offset);
+                lIsInsideBoard = ((lTempPoint.y >= 0) && (lTempPoint.y < lTopOffsetPoint.y));
             }
-        }
-        
-        
-        //from left top to bottom right ---------------------------------
-        lTempPoint = EEBoardPointMake(move.point.x - offset, move.point.y - offset);
-        
-        if ((lTempPoint.x >= 0) && (lTempPoint.x < lTopOffsetPoint.x) && (lTempPoint.y >= 0) && (lTempPoint.y < lTopOffsetPoint.y)) {
-            lWinResult = [self checkForWinnerForPlayerType:lPlayerType atPoint:lTempPoint direction:EELineDirectionHVR];
-            if (lWinResult.hasWinner) {
-                break;
+            
+            if (!lIsInsideBoard) {
+                continue;
             }
-        }
-        
-        
-        // direction - from right top to bottom left  ---------------------------------
-        lTempPoint = EEBoardPointMake(move.point.x + offset, move.point.y - offset);
-        
-        if ((lTempPoint.x >= lBottomOffsetPoint.x) && (lTempPoint.x < _boardSize.width) && (lTempPoint.y >= 0) && (lTempPoint.y < lTopOffsetPoint.y)) {
-            lWinResult = [self checkForWinnerForPlayerType:lPlayerType atPoint:lTempPoint direction:EELineDirectionHVL];
+            
+            
+            lWinResult = [self checkForWinnerForPlayerType:lPlayerType atPoint:lTempPoint direction:lineDirection];
             if (lWinResult.hasWinner) {
-                break;
-            }
-        }
-        
-        
-        // direction - from top to bottom  ---------------------------------
-        lTempPoint = EEBoardPointMake(move.point.x, move.point.y - offset);
-        
-        if ((lTempPoint.y >= 0) && (lTempPoint.y < lTopOffsetPoint.y)) {
-            lWinResult = [self checkForWinnerForPlayerType:lPlayerType atPoint:lTempPoint direction:EELineDirectionV];
-            if (lWinResult.hasWinner) {
-                break;
+                return lWinResult;
             }
         }
     }
@@ -216,11 +204,11 @@ typedef struct  {
     lUpdateValuesData.playerType = playerType;
     lUpdateValuesData.opponentPlayerType = EEOppositePlayerTo(playerType);
     lUpdateValuesData.movePoint = point;
-    lUpdateValuesData.bottomOffsetPoint = EEBoardPointMake(point.x + 4, point.y + 4);
+    lUpdateValuesData.bottomOffsetPoint = EEBoardPointMake(4, 4);
     lUpdateValuesData.topOffsetPoint = EEBoardPointMake(_boardSize.width - 4, _boardSize.height - 4);
     
     for (NSUInteger offset = 0; offset < 5; offset++) {
-        for (EELineDirection lineDirection = EELineDirectionH; lineDirection <= EELineDirectionV; lineDirection++) {
+        for (EELineDirection lineDirection = EELineDirectionH; lineDirection <= EELineDirectionHVL; lineDirection++) {
             lUpdateValuesData.offset = offset;
             lUpdateValuesData.lineDirection = lineDirection;
             [self updateValuesWithData:lUpdateValuesData];
@@ -258,7 +246,6 @@ typedef struct  {
         return;
     }
     
-    
     EEBoardItem *lItem = [self itemAtPoint:lTempPoint];
     
     NSUInteger lLineValue = [lItem increamentLineValueForPlayer:updateValuesData.playerType direction:updateValuesData.lineDirection];
@@ -293,22 +280,22 @@ typedef struct  {
 }
 
 - (EEFinishResult)checkForWinnerForPlayerType:(EEPlayerType)playerType atPoint:(EEBoardPoint)point direction:(EELineDirection)direction {
-    EEFinishResult lWinResult;
-    lWinResult.hasWinner = NO;
+    EEFinishResult lFinishResult;
+    lFinishResult.hasWinner = NO;
     
     EEBoardItem *lItem = [self itemAtPoint:point];
     
     NSUInteger lLineValue = [lItem lineValueForPlayer:playerType direction:direction];
     
     if (5 <= lLineValue) {
-        lWinResult.hasWinner = YES;
-        lWinResult.playerType = playerType;
-        lWinResult.startPoint = point;
-        lWinResult.lineDirection = direction;
-        lWinResult.lineLenght = lLineValue;
+        lFinishResult.hasWinner = YES;
+        lFinishResult.playerType = playerType;
+        lFinishResult.startPoint = point;
+        lFinishResult.lineDirection = direction;
+        lFinishResult.lineLenght = lLineValue;
     }
     
-    return lWinResult;
+    return lFinishResult;
 }
 
 #pragma mark - Utils

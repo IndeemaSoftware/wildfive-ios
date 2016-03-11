@@ -92,7 +92,7 @@
 }
 
 - (void)makeMoveForBot {
-    EEBoardPoint lPoint = [_bot findBestNextPositionForBot];
+    EEBoardPoint lPoint = [_bot findBestNextPosition];
     EEBoardSign lBoardSign = (self.opponentPlayer.type == EEPlayerTypeX) ? EEBoardSignX : EEBoardSignO;
     
     EEMove *lMove = [EEMove moveWithForPlayer:self.opponentPlayer sign:lBoardSign point:lPoint];

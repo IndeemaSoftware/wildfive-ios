@@ -57,45 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WildFive/GameLogic/BotGameController/EEBotGameController.m"
-            timestampString = "479395012.134251"
+            filePath = "WildFive/GameLogic/Board/EEBoard.m"
+            timestampString = "479409722.055658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-makeMoveForBot"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WildFive/GameLogic/Bot/EEBot.m"
-            timestampString = "479395253.422646"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-findBestPositionForPlayer:withAttackFactor:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WildFive/GameLogic/Bot/EEBot.m"
-            timestampString = "479395693.791971"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "-findBestPositionForPlayer:withAttackFactor:"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "-checkForWinnerForPlayerType:atPoint:direction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

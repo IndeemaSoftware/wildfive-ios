@@ -33,15 +33,15 @@
     return self;
 }
 
-- (EEBoardPoint)findBestNextPositionForBot {
+- (EEBoardPoint)findBestNextPosition {
     return [self findBestPositionForPlayer:_botPlayer.type withAttackFactor:[EEBot attackFactorForBotLevel:_level]];
 }
 
 - (EEBoardPoint)findBestPositionForPlayer:(EEPlayerType)playerType withAttackFactor:(NSUInteger)attackFactor {
-    EEBoardPoint lResult = EEBoardPointMake(1, 1);
+    EEBoardPoint lResult = EEBoardPointMake(-1, -1);
     
     EEPlayerType lOpponentPlayer = EEOppositePlayerTo(playerType);
-    CGFloat lMaxValue = CGFLOAT_MIN;
+    CGFloat lMaxValue = -CGFLOAT_MAX;
     CGFloat lAttackValue = (16.0f + attackFactor) / 16.0f;
     BOOL lIsAllEmpty = YES;
     
@@ -52,7 +52,7 @@
             if (lBoardItem.playerType == EEPlayerTypeNone) {
                 CGFloat lValue = floorf([lBoardItem positionValueForPlayer:playerType] * lAttackValue) + [lBoardItem positionValueForPlayer:lOpponentPlayer];
                 
-                if (lValue > lMaxValue) {
+                if (lValue >= lMaxValue) {
                     lMaxValue = lValue;
                     lResult = EEBoardPointMake(x, y);
                 }

@@ -8,7 +8,9 @@
 
 #import "EEGameViewController.h"
 
-#import "EEGameHeaders.h"
+#import "EEGameController.h"
+#import "EEPlayer.h"
+#import "EEMove.h"
 
 #import "EEBoardView.h"
 #import "EEPlayerView.h"
@@ -59,6 +61,10 @@
     
     [_opponentPlayerView setPlayerName:_gameController.opponentPlayer.name];
     [_opponentPlayerView setPlayerType:_gameController.opponentPlayer.type];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 }
 
 #pragma mark - Private methods
@@ -115,8 +121,16 @@
     [self updatePlayerViewsState];
 }
 
-- (void)EEGameController:(EEGameController*)gameController gameFinished:(EEFinishResult)winResult {
-    
+- (void)EEGameController:(EEGameController*)gameController gameFinished:(EEFinishResult)finishResult {
+    if (!finishResult.hasWinner) {
+        [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"Game finished. No winner." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+    } else {
+        if (_gameController.player.type == finishResult.playerType) {
+            [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"You won!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"You lose!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        }
+    }
 }
 
 @end

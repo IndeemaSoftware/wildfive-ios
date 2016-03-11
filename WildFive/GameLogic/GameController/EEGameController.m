@@ -85,15 +85,17 @@
     EEFinishResult lFinishResult = [_board checkForWinnerForMove:move];
     if (lFinishResult.hasWinner) {
         _gameStatus = EEGameStatusFinish;
-        
-        
+        [self sendToDelegateFinishResults:lFinishResult];
     } else {
         // check for possible turns and free points/items
         if ((_board.totalLines <= 0) || ![_board hasFreeItems]) {
             _gameStatus = EEGameStatusFinish;
+            
+            lFinishResult.hasWinner = NO;
+            [self sendToDelegateFinishResults:lFinishResult];
+        } else {
+            [self changeActivePlayerAndNotifiDelegate];
         }
-        
-        [self changeActivePlayerAndNotifiDelegate];
     }
     
     return EEMoveStatusSuccess;

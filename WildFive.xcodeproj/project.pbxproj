@@ -40,7 +40,6 @@
 		0502A8A61C8EEC8E00F70210 /* EEGameController_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEGameController_hidden.h; path = GameLogic/GameController/EEGameController_hidden.h; sourceTree = "<group>"; };
 		051275C91C919BF50061F0AE /* EEMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEMove.h; path = GameLogic/Move/EEMove.h; sourceTree = "<group>"; };
 		051275CA1C919BF50061F0AE /* EEMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEMove.m; path = GameLogic/Move/EEMove.m; sourceTree = "<group>"; };
-		051275CC1C919C430061F0AE /* EEGameHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EEGameHeaders.h; path = GameLogic/EEGameHeaders.h; sourceTree = "<group>"; };
 		051275CE1C92D3A30061F0AE /* EEBot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEBot.h; path = GameLogic/Bot/EEBot.h; sourceTree = "<group>"; };
 		051275CF1C92D3A30061F0AE /* EEBot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEBot.m; path = GameLogic/Bot/EEBot.m; sourceTree = "<group>"; };
 		051275D11C92D83F0061F0AE /* EEBoardItem_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEBoardItem_hidden.h; path = GameLogic/Board/BoardItem/EEBoardItem_hidden.h; sourceTree = "<group>"; };
@@ -322,7 +321,6 @@
 		05B0AE1A1C8BB4F50069C263 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
-				051275CC1C919C430061F0AE /* EEGameHeaders.h */,
 				05B0AE231C8BB9490069C263 /* EEGameCommon.h */,
 				051275CD1C92D3910061F0AE /* Bot */,
 				051275C81C919BD10061F0AE /* Move */,

@@ -19,6 +19,7 @@
 		05484ED41C8B92FD00BDDFF8 /* background_screen_3_568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05484ECF1C8B92FD00BDDFF8 /* background_screen_3_568h@2x.png */; };
 		05484ED51C8B92FD00BDDFF8 /* background_screen_4_568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05484ED01C8B92FD00BDDFF8 /* background_screen_4_568h@2x.png */; };
 		05484ED61C8B92FD00BDDFF8 /* background_screen_5_568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05484ED11C8B92FD00BDDFF8 /* background_screen_5_568h@2x.png */; };
+		05724B2D1C945E2100CEB159 /* EEOnlineGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05724B2C1C945E2100CEB159 /* EEOnlineGameController.m */; };
 		0595889E1C8EFB6D00F6E3E8 /* EEBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0595889D1C8EFB6D00F6E3E8 /* EEBoard.m */; };
 		059588A31C8EFBA600F6E3E8 /* EEBoardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 059588A21C8EFBA600F6E3E8 /* EEBoardItem.m */; };
 		059588A81C8F1CE300F6E3E8 /* EEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 059588A71C8F1CE300F6E3E8 /* EEPlayer.m */; };
@@ -32,6 +33,7 @@
 		05B0AE191C8BB4E00069C263 /* EEGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B0AE181C8BB4E00069C263 /* EEGameViewController.m */; };
 		05B0AE1E1C8BB53A0069C263 /* EEGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B0AE1D1C8BB53A0069C263 /* EEGameController.m */; };
 		05B0AE291C8BC9E20069C263 /* EEGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05B0AE281C8BC9E20069C263 /* EEGameViewController.xib */; };
+		05CE12121C944ABF0078D527 /* NSValue+GameLogicStructures.m in Sources */ = {isa = PBXBuildFile; fileRef = 05CE12111C944ABF0078D527 /* NSValue+GameLogicStructures.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		05484ECF1C8B92FD00BDDFF8 /* background_screen_3_568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_screen_3_568h@2x.png"; sourceTree = "<group>"; };
 		05484ED01C8B92FD00BDDFF8 /* background_screen_4_568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_screen_4_568h@2x.png"; sourceTree = "<group>"; };
 		05484ED11C8B92FD00BDDFF8 /* background_screen_5_568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background_screen_5_568h@2x.png"; sourceTree = "<group>"; };
+		05724B2B1C945E2100CEB159 /* EEOnlineGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEOnlineGameController.h; path = GameLogic/OnlineGameController/EEOnlineGameController.h; sourceTree = "<group>"; };
+		05724B2C1C945E2100CEB159 /* EEOnlineGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEOnlineGameController.m; path = GameLogic/OnlineGameController/EEOnlineGameController.m; sourceTree = "<group>"; };
 		0595889C1C8EFB6D00F6E3E8 /* EEBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEBoard.h; path = GameLogic/Board/EEBoard.h; sourceTree = "<group>"; };
 		0595889D1C8EFB6D00F6E3E8 /* EEBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEBoard.m; path = GameLogic/Board/EEBoard.m; sourceTree = "<group>"; };
 		059588A11C8EFBA600F6E3E8 /* EEBoardItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEBoardItem.h; path = GameLogic/Board/BoardItem/EEBoardItem.h; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		05B0AE1D1C8BB53A0069C263 /* EEGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EEGameController.m; path = GameLogic/GameController/EEGameController.m; sourceTree = "<group>"; };
 		05B0AE231C8BB9490069C263 /* EEGameCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EEGameCommon.h; path = GameLogic/EEGameCommon.h; sourceTree = "<group>"; };
 		05B0AE281C8BC9E20069C263 /* EEGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EEGameViewController.xib; path = ViewControllers/GameViewController/EEGameViewController.xib; sourceTree = "<group>"; };
+		05CE12101C944ABF0078D527 /* NSValue+GameLogicStructures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSValue+GameLogicStructures.h"; path = "Categories/NSValue+GameLogicStructures.h"; sourceTree = "<group>"; };
+		05CE12111C944ABF0078D527 /* NSValue+GameLogicStructures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSValue+GameLogicStructures.m"; path = "Categories/NSValue+GameLogicStructures.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,8 @@
 		05484E991C8B793C00BDDFF8 /* WildFive */ = {
 			isa = PBXGroup;
 			children = (
+				05724B2E1C945E3500CEB159 /* Communication */,
+				05CE120F1C944A6A0078D527 /* Categories */,
 				05B0AE1A1C8BB4F50069C263 /* GameLogic */,
 				05484EC01C8B818A00BDDFF8 /* Custom */,
 				05484EB31C8B7F3700BDDFF8 /* ViewControllers */,
@@ -217,6 +225,37 @@
 				05484ED11C8B92FD00BDDFF8 /* background_screen_5_568h@2x.png */,
 			);
 			path = Background;
+			sourceTree = "<group>";
+		};
+		05724B2A1C945DF700CEB159 /* OnlineGameController */ = {
+			isa = PBXGroup;
+			children = (
+				05724B2B1C945E2100CEB159 /* EEOnlineGameController.h */,
+				05724B2C1C945E2100CEB159 /* EEOnlineGameController.m */,
+			);
+			name = OnlineGameController;
+			sourceTree = "<group>";
+		};
+		05724B2E1C945E3500CEB159 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				05724B2F1C945E4A00CEB159 /* New Group */,
+			);
+			name = Communication;
+			sourceTree = "<group>";
+		};
+		05724B2F1C945E4A00CEB159 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		05724B301C9465A900CEB159 /* GameConnection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GameConnection;
 			sourceTree = "<group>";
 		};
 		0595889B1C8EFB3D00F6E3E8 /* Board */ = {
@@ -321,11 +360,13 @@
 		05B0AE1A1C8BB4F50069C263 /* GameLogic */ = {
 			isa = PBXGroup;
 			children = (
+				05724B301C9465A900CEB159 /* GameConnection */,
 				05B0AE231C8BB9490069C263 /* EEGameCommon.h */,
 				051275CD1C92D3910061F0AE /* Bot */,
 				051275C81C919BD10061F0AE /* Move */,
 				059588A51C8F1CC300F6E3E8 /* Player */,
 				0595889B1C8EFB3D00F6E3E8 /* Board */,
+				05724B2A1C945DF700CEB159 /* OnlineGameController */,
 				0502A8A21C8EE7E900F70210 /* BotGameController */,
 				05B0AE1B1C8BB5100069C263 /* GameController */,
 			);
@@ -340,6 +381,15 @@
 				0502A8A61C8EEC8E00F70210 /* EEGameController_hidden.h */,
 			);
 			name = GameController;
+			sourceTree = "<group>";
+		};
+		05CE120F1C944A6A0078D527 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				05CE12101C944ABF0078D527 /* NSValue+GameLogicStructures.h */,
+				05CE12111C944ABF0078D527 /* NSValue+GameLogicStructures.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05B0AE191C8BB4E00069C263 /* EEGameViewController.m in Sources */,
+				05CE12121C944ABF0078D527 /* NSValue+GameLogicStructures.m in Sources */,
 				05484E9F1C8B793C00BDDFF8 /* AppDelegate.m in Sources */,
 				059588A81C8F1CE300F6E3E8 /* EEPlayer.m in Sources */,
 				0595889E1C8EFB6D00F6E3E8 /* EEBoard.m in Sources */,
@@ -432,6 +483,7 @@
 				059588B51C8F2A0900F6E3E8 /* EEBoardViewItem.m in Sources */,
 				05B0AE121C8B9CE60069C263 /* EEMenuViewController.m in Sources */,
 				0502A8A51C8EE80D00F70210 /* EEBotGameController.m in Sources */,
+				05724B2D1C945E2100CEB159 /* EEOnlineGameController.m in Sources */,
 				05484E9C1C8B793C00BDDFF8 /* main.m in Sources */,
 				05484EBF1C8B7FF500BDDFF8 /* EEAbstractViewController.m in Sources */,
 				05B0AE1E1C8BB53A0069C263 /* EEGameController.m in Sources */,

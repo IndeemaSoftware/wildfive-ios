@@ -79,7 +79,7 @@
 - (void)startTimer {
     [self stopTimer];
     
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(makeMoveForBot) userInfo:nil repeats:NO];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(makeMoveForBot) userInfo:nil repeats:NO];
 }
 
 - (void)stopTimer {

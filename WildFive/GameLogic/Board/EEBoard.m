@@ -12,6 +12,9 @@
 #import "EEPlayer.h"
 #import "EEBoardItem_hidden.h"
 
+// categories
+#import "NSValue+GameLogicStructures.h"
+
 typedef struct  {
     EEBoardPoint movePoint;
     EEBoardPoint bottomOffsetPoint;
@@ -22,21 +25,28 @@ typedef struct  {
     NSUInteger offset;
 } EEUpdateValuesData;
 
-
+// coding keys
+#define BOARD_SIZE_K @"board_size"
+#define TOTAL_LINES_K @"total_lines"
+#define POSITION_WEIGHTS_K @"position_weights"
+#define BOARD_ARRAY_K @"board_array"
 
 
 @interface EEBoard() {
     NSMutableArray *_boardArray;
     
     NSInteger _totalLines;
-    
-    EEBoardSize _linesBoardSize;
 }
+
+@property (nonatomic, readonly) NSMutableArray *boardArray;
 
 - (void)updateValuesForPlayerType:(EEPlayerType)playerType atPoint:(EEBoardPoint)point;
 - (void)updateValuesWithData:(EEUpdateValuesData)updateValuesData;
 
 - (EEFinishResult)checkForWinnerForPlayerType:(EEPlayerType)playerType atPoint:(EEBoardPoint)point direction:(EELineDirection)direction;
+
+// copy
+- (void)copyDataFromBoard:(EEBoard*)board;
 
 @end
 
@@ -51,16 +61,14 @@ typedef struct  {
         _boardSize = boardSize;
         _totalLines = [EEBoard totalLinsForBoardSize:_boardSize];
         
-        _linesBoardSize = EEBoardSizeMake(_boardSize.width - 4, _boardSize.height - 4);
-        
         _positionWeights = positionWeights;
         
         _boardArray = [[NSMutableArray alloc] init];
         
-        for (NSUInteger x = 0; x < boardSize.width; x++) {
+        for (NSUInteger x = 0; x < _boardSize.width; x++) {
             NSMutableArray *lBoardXArray = [[NSMutableArray alloc] init];
             
-            for (NSUInteger y = 0; y < boardSize.height; y++) {
+            for (NSUInteger y = 0; y < _boardSize.height; y++) {
                 [lBoardXArray addObject:[EEBoardItem new]];
             }
             
@@ -68,6 +76,31 @@ typedef struct  {
         }
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        _boardSize = [(NSValue*)[aDecoder decodeObjectForKey:BOARD_SIZE_K] boardSize];
+        _totalLines = [aDecoder decodeIntegerForKey:TOTAL_LINES_K];
+        
+        _positionWeights = [aDecoder decodeObjectForKey:POSITION_WEIGHTS_K];
+        _boardArray = [aDecoder decodeObjectForKey:BOARD_ARRAY_K];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:[NSValue valueWithEEBoardSize:_boardSize] forKey:BOARD_SIZE_K];
+    [aCoder encodeInteger:_totalLines forKey:TOTAL_LINES_K];
+    [aCoder encodeObject:_positionWeights forKey:POSITION_WEIGHTS_K];
+    [aCoder encodeObject:_boardArray forKey:BOARD_ARRAY_K];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    EEBoard *lBoardCopy = [[[self class] alloc] init];
+    [lBoardCopy copyDataFromBoard:self];
+    return lBoardCopy;
 }
 
 #pragma mark Items
@@ -187,7 +220,6 @@ typedef struct  {
                 continue;
             }
             
-            
             lWinResult = [self checkForWinnerForPlayerType:lPlayerType atPoint:lTempPoint direction:lineDirection];
             if (lWinResult.hasWinner) {
                 return lWinResult;
@@ -296,6 +328,14 @@ typedef struct  {
     }
     
     return lFinishResult;
+}
+
+- (void)copyDataFromBoard:(EEBoard*)board {
+    _boardSize = board.boardSize;
+    _totalLines = board.totalLines;
+    _positionWeights = board.positionWeights;
+    
+    _boardArray = [board.boardArray copy];
 }
 
 #pragma mark - Utils

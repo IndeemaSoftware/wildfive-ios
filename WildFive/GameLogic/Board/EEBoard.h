@@ -12,7 +12,7 @@
 @class EEBoardItem;
 @class EEMove;
 
-@interface EEBoard : NSObject
+@interface EEBoard : NSObject <NSCoding, NSCopying>
 
 @property (nonatomic, readonly) EEBoardSize boardSize;
 @property (nonatomic, readonly) NSInteger totalLines;

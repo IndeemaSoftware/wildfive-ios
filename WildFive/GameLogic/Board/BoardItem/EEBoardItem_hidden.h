@@ -8,13 +8,17 @@
 
 #import "EEBoardItem.h"
 
-@interface EEBoardItem ()
+@interface EEBoardItem () <NSCoding, NSCopying>
+
+- (void)copyDataFromItem:(EEBoardItem*)item;
 
 // 
 - (void)setBoardSignValue:(EEBoardSign)boardSign;
 - (void)setPlayerTypeValue:(EEPlayerType)playerType;
 
 // lines
+- (NSMutableArray*)lineArrayForPlayer:(EEPlayerType)playerType;
+
 - (NSUInteger)lineValueForPlayer:(EEPlayerType)playerType direction:(EELineDirection)lineDirection;
 - (void)setLineValue:(NSUInteger)value player:(EEPlayerType)playerType direction:(EELineDirection)lineDirection;
 - (void)addToLineValue:(NSUInteger)value player:(EEPlayerType)playerType direction:(EELineDirection)lineDirection;

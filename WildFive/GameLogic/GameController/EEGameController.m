@@ -65,6 +65,10 @@
     return (_gameStatus == EEGameStatusActive);
 }
 
+- (BOOL)isGameInterrupted {
+    return (_gameStatus == EEGameStatusInterrupted);
+}
+
 - (void)resetGame {
     if (_player.type == EEPlayerTypeX) {
         _activePlayer = _player;

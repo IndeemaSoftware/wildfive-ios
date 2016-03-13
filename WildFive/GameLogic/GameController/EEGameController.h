@@ -33,6 +33,7 @@
 - (BOOL)isOpponentPlayerActive;
 - (BOOL)isGameFinished;
 - (BOOL)isGameActive;
+- (BOOL)isGameInterrupted;
 
 - (void)resetGame;
 - (void)stopGame;

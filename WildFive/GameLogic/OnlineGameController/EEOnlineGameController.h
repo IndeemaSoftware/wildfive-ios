@@ -8,10 +8,10 @@
 
 #import "EEGameController.h"
 
-@class EEGameConnection;
+@protocol EEGameConnection;
 
 @interface EEOnlineGameController : EEGameController
 
-- (instancetype)initWithConnection:(EEGameConnection *)gameConnection;
+- (instancetype)initWithConnection:(id <EEGameConnection>)gameConnection;
 
 @end

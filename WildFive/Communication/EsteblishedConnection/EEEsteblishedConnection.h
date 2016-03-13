@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MultipeerConnectivity/MultipeerConnectivity.h>
+
+typedef NS_ENUM(NSInteger, EEGameConnectionType) {
+    EEGameConnectionTypeLocal,
+    EEGameConnectionTypeGameCenter
+};
 
 @interface EEEsteblishedConnection : NSObject
 
-@property (nonatomic, strong) MCSession *session;
+@property (nonatomic, strong) id connectionObject;
 @property (nonatomic, copy) NSString *playerType;
 @property (nonatomic, copy) NSString *playerName;
+@property (nonatomic, assign) EEGameConnectionType connectionType;
 
 @end

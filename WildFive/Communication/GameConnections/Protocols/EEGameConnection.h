@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EEEsteblishedConnection.h"
 
-@class EEEsteblishedConnection;
 @protocol EEGameConnectionDelegate;
-@interface EEGameConnection : NSObject
+
+@protocol EEGameConnection <NSObject>
 
 @property (nonatomic, readonly) NSString *playerType;
 @property (nonatomic, readonly) NSString *playerName;
+@property (nonatomic, assign) EEGameConnectionType connectionType;
 
 @property (nonatomic, weak) id <EEGameConnectionDelegate> delegate;
 
@@ -21,13 +23,5 @@
 + (instancetype)gameConnectionWith:(EEEsteblishedConnection *)connection;
 
 - (void)sendMessage:(NSData *)message;
-
-@end
-
-
-@protocol EEGameConnectionDelegate <NSObject>
-
-- (void)EEGameConnectionDelegateReceivedMessage:(NSData*)message;
-- (void)EEGameConnectionDelegateConnectionLost;
 
 @end

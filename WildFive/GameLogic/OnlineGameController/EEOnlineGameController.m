@@ -10,6 +10,7 @@
 #import "EEGameController_hidden.h"
 
 #import "EEGameConnection.h"
+#import "EEGameConnectionDelegate.h"
 
 #import "NSValue+GameLogicStructures.h"
 
@@ -32,7 +33,7 @@
 #define KEY_TYPE     @"type"
 
 @interface EEOnlineGameController() <EEGameConnectionDelegate> {
-    EEGameConnection *_gameConnection;
+    id <EEGameConnection> _gameConnection;
 }
 
 - (void)sendToOpponentMessageOfLeavingGame;
@@ -49,7 +50,7 @@
 @implementation EEOnlineGameController
 
 #pragma mark - Public methods
-- (instancetype)initWithConnection:(EEGameConnection *)gameConnection {
+- (instancetype)initWithConnection:(id <EEGameConnection>)gameConnection {
     self = [super initGameController];
     if (self) {
         _gameConnection = gameConnection;
@@ -73,7 +74,6 @@
 }
 
 - (void)stopGame {
-    // TODO: send message to opponent that player is leaving the game.
     [self sendToOpponentMessageOfLeavingGame];
 }
 
@@ -156,7 +156,7 @@
         return nil;
     }
     
-    EEPlayer *lPlayer = lPlayerType == _player.type ? _player : _opponentPlayer;
+    EEPlayer *lPlayer = (lPlayerType == _player.type ) ? _player : _opponentPlayer;
 
     return [EEMove moveWithForPlayer:lPlayer sign:lBoardSign point:lPoint];
 }

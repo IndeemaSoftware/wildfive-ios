@@ -6,16 +6,24 @@
 //  Copyright © 2016 Indeema Software Inc. All rights reserved.
 //
 
-#import "EEGameConnection.h"
-#import "EEEsteblishedConnection.h"
+#import "EELocalGameConnection.h"
+#import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface EEGameConnection() <MCSessionDelegate> {
+#import "EEEsteblishedConnection.h"
+#import "EEGameConnectionDelegate.h"
+
+@interface EELocalGameConnection() <MCSessionDelegate> {
     MCSession *_session;
 }
 
 @end
 
-@implementation EEGameConnection
+@implementation EELocalGameConnection
+
+@synthesize playerType=_playerType;
+@synthesize playerName=_playerName;
+@synthesize connectionType=_connectionType;
+@synthesize delegate=_delegate;
 
 #pragma mark - Public methods
 - (instancetype)initWithConnection:(EEEsteblishedConnection *)connection {
@@ -25,14 +33,14 @@
         _playerName = connection.playerName;
         _playerType = connection.playerType;
         
-        _session = connection.session;
+        _session = connection.connectionObject;
         [_session setDelegate:self];
     }
     return self;
 }
 
 + (instancetype)gameConnectionWith:(EEEsteblishedConnection *)connection {
-    return [[EEGameConnection alloc] initWithConnection:connection];
+    return [[EELocalGameConnection alloc] initWithConnection:connection];
 }
 
 - (void)sendMessage:(NSData *)message {
@@ -41,7 +49,7 @@
         [_session sendData:message toPeers:_session.connectedPeers withMode:MCSessionSendDataReliable error:&lError];
         
         if (lError != nil) {
-            DLog(@"sending error %@", lError.localizedDescription);
+            DLog(@"EELocalGameConnection sending error %@", lError.localizedDescription);
         }
     }
 }

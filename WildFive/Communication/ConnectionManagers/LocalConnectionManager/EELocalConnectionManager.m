@@ -279,7 +279,8 @@ static NSString * const sServiceName = @"wildfive-game";
         [session setDelegate:nil];
         
         EEEsteblishedConnection *lEsteblishedConnection = [EEEsteblishedConnection new];
-        lEsteblishedConnection.session = session;
+        lEsteblishedConnection.connectionObject = session;
+        lEsteblishedConnection.connectionType == EEGameConnectionTypeLocal;
         
         if (session.connectedPeers.count != 0) {
             lEsteblishedConnection.playerName = session.connectedPeers[0].displayName;

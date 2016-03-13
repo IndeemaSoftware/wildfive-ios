@@ -12,7 +12,7 @@
 
 #import "EEGameViewController.h"
 #import "EEOnlineGameController.h"
-#import "EEGameConnection.h"
+#import "EELocalGameConnection.h"
 
 @interface EEListOfGamesViewController() <UITableViewDataSource, UITableViewDelegate, EELocalConnectionManagerDelegate> {
     IBOutlet UITableView *_tableView;
@@ -98,10 +98,9 @@
 }
 
 - (void)EELocalConnectionEsteblishedConnection:(EEEsteblishedConnection *)connection {
-    NSLog(@"EELocalConnectionEsteblishedConnection %@", connection);
     [self.localConnection stopAdvertiser];
     
-    EEOnlineGameController *lGameController = [[EEOnlineGameController alloc] initWithConnection:[EEGameConnection gameConnectionWith:connection]];
+    EEOnlineGameController *lGameController = [[EEOnlineGameController alloc] initWithConnection:[EELocalGameConnection gameConnectionWith:connection]];
     
     dispatch_async(dispatch_get_main_queue(),^{
         EEGameViewController *lGameViewController = [[EEGameViewController alloc] initWithGame:lGameController];

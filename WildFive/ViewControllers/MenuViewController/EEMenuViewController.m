@@ -16,6 +16,8 @@
 #import "EEGameViewController.h"
 #import "EEBotGameController.h"
 
+#import "EEListOfGamesViewController.h"
+
 #import "AppDelegate.h"
 
 @interface EEMenuViewController() <UIAlertViewDelegate /*EEPurchasingDelegate,*/> {
@@ -113,14 +115,16 @@
 }
 
 - (IBAction)offlineGameButtonPressed:(id)pSender {
-    
-}
-
-- (IBAction)localNetworkButtonPressed:(id)pSender {
     EEBotGameController *lGameController = [[EEBotGameController alloc] initWithBotLevel:EEBotHard];
     EEGameViewController *lGameViewController = [[EEGameViewController alloc] initWithGame:lGameController];
     
     [self.navigationController pushViewController:lGameViewController animated:YES];
+}
+
+- (IBAction)localNetworkButtonPressed:(id)pSender {
+    EEListOfGamesViewController *lListOfGamesViewController = [[EEListOfGamesViewController alloc] initWithNibName:@"EEListOfGamesViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:lListOfGamesViewController animated:YES];
 }
 
 - (IBAction)facebookButtonPressed:(id)pSender{

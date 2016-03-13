@@ -14,4 +14,7 @@
 + (instancetype)valueWithEEBoardSize:(EEBoardSize)boardSize;
 @property (readonly) EEBoardSize boardSize;
 
++ (instancetype)valueWithEEBoardPoint:(EEBoardPoint)point;
+@property (readonly) EEBoardPoint boardPoint;
+
 @end

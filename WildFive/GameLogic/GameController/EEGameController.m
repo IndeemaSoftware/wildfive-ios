@@ -46,7 +46,7 @@
 }
 
 - (BOOL)isActionAllowedForPlayer {
-    return [self isPlayerActive] && ![self isGameFinished];
+    return [self isPlayerActive] && [self isGameActive];
 }
 
 - (BOOL)isPlayerActive {
@@ -61,14 +61,27 @@
     return (_gameStatus == EEGameStatusFinish);
 }
 
+- (BOOL)isGameActive {
+    return (_gameStatus == EEGameStatusActive);
+}
+
 - (void)resetGame {
-    _activePlayer = _player;
+    if (_player.type == EEPlayerTypeX) {
+        _activePlayer = _player;
+    } else {
+        _activePlayer = _opponentPlayer;
+    }
+    
     _gameStatus = EEGameStatusActive;
+}
+
+- (void)stopGame {
+    
 }
 
 - (EEMoveStatus)makeMove:(EEMove*)move {
     // check for game status and return an error if game is finished
-    if ([self isGameFinished]) {
+    if (![self isGameActive]) {
         return EEMoveStatusGameFinished;
     }
     
@@ -147,6 +160,16 @@
     if (self.delegate != nil) {
         if ([self.delegate respondsToSelector:@selector(EEGameController:activePlayerHasChanged:)]) {
             [self.delegate EEGameController:self gameFinished:finishResults];
+        }
+    } else {
+        DLog(@"EEGameController has no delegate!!!");
+    }
+}
+
+- (void)sendToDelegateGameInterrupted:(EEInterruptionReason)reason {
+    if (self.delegate != nil) {
+        if ([self.delegate respondsToSelector:@selector(EEGameController:gameInterrupted:)]) {
+            [self.delegate EEGameController:self gameInterrupted:reason];
         }
     } else {
         DLog(@"EEGameController has no delegate!!!");

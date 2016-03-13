@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WildFive/GameLogic/GameController/EEGameController.m"
-            timestampString = "479411891.522578"
+            timestampString = "479582832.277837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-makeMove:"
             landmarkType = "5">
          </BreakpointContent>

@@ -32,8 +32,10 @@
 - (BOOL)isPlayerActive;
 - (BOOL)isOpponentPlayerActive;
 - (BOOL)isGameFinished;
+- (BOOL)isGameActive;
 
 - (void)resetGame;
+- (void)stopGame;
 
 - (EEMoveStatus)makeMove:(EEMove*)move;
 
@@ -44,4 +46,5 @@
 - (void)EEGameController:(EEGameController*)gameController updatedItemAtPoint:(EEBoardPoint)point;
 - (void)EEGameController:(EEGameController*)gameController activePlayerHasChanged:(EEPlayer*)activePlayer;
 - (void)EEGameController:(EEGameController*)gameController gameFinished:(EEFinishResult)winResult;
+- (void)EEGameController:(EEGameController*)gameController gameInterrupted:(EEInterruptionReason)reason;
 @end

@@ -37,6 +37,7 @@
 - (void)sendToDelegateActivePlayer;
 - (void)sendToDelegateUpdatePoint:(EEBoardPoint)point;
 - (void)sendToDelegateFinishResults:(EEFinishResult)finishResults;
+- (void)sendToDelegateGameInterrupted:(EEInterruptionReason)reason;
 
 - (void)delegateRequiresSelector:(SEL)selector;
 

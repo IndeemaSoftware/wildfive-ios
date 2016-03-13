@@ -46,6 +46,12 @@ typedef NS_ENUM(NSInteger, EEMoveStatus) {
 typedef NS_ENUM(NSInteger, EEGameStatus) {
     EEGameStatusActive,
     EEGameStatusFinish,
+    EEGameStatusInterrupted
+};
+
+typedef NS_ENUM(NSInteger, EEInterruptionReason) {
+    EEInterruptionReasonOpponentLeavedGame,
+    EEInterruptionReasonConnectionLost
 };
 
 typedef struct  {
@@ -83,6 +89,12 @@ CG_INLINE EEPlayerType EEOppositePlayerTo(EEPlayerType player) {
 
 /// ------------- IN LINE FUNCTIONS
 
+CG_INLINE NSString* EEPlayerTypeToString(EEPlayerType playerType);
+CG_INLINE EEPlayerType EEPlayerTypeFromString(NSString* playerTypeString);
+
+CG_INLINE NSString* EEBoardSignToString(EEBoardSign boardSign);
+CG_INLINE EEBoardSign EEBoardSignFromString(NSString* boardSignString);
+
 CG_INLINE EEBoardSize EEBoardSizeMake(NSUInteger width, NSUInteger height);
 CG_INLINE EEBoardPoint EEBoardPointMake(NSInteger x, NSInteger y);
 CG_INLINE EEBoardFrame EEBoardFrameMake(NSInteger x, NSInteger y, NSUInteger width, NSUInteger height);
@@ -91,6 +103,45 @@ CG_INLINE BOOL EEBoardPointIsInsideBoard(EEBoardPoint point, EEBoardSize boardSi
 CG_INLINE BOOL EEBoardPointIsInsideBoardFrame(EEBoardPoint point, EEBoardFrame boardFrame);
 
 /// ------------- IN LINE FUNCTIONS REALIZATION
+CG_INLINE NSString* EEPlayerTypeToString(EEPlayerType playerType) {
+    if (playerType == EEPlayerTypeX) {
+        return @"X";
+    } else if (playerType == EEPlayerTypeO) {
+        return @"O";
+    } else {
+        return @"";
+    }
+}
+
+CG_INLINE EEPlayerType EEPlayerTypeFromString(NSString* playerTypeString) {
+    if ([playerTypeString isEqualToString:@"X"]) {
+        return EEPlayerTypeX;
+    } else if ([playerTypeString isEqualToString:@"O"]) {
+        return EEPlayerTypeO;
+    } else {
+        return EEPlayerTypeNone;
+    }
+}
+
+CG_INLINE NSString* EEBoardSignToString(EEBoardSign boardSign) {
+    if (boardSign == EEBoardSignX) {
+        return @"X";
+    } else if (boardSign == EEBoardSignO) {
+        return @"O";
+    } else {
+        return @"";
+    }
+}
+
+CG_INLINE EEBoardSign EEBoardSignFromString(NSString* boardSignString) {
+    if ([boardSignString isEqualToString:@"X"]) {
+        return EEBoardSignX;
+    } else if ([boardSignString isEqualToString:@"O"]) {
+        return EEBoardSignO;
+    } else {
+        return EEBoardSignNone;
+    }
+}
 
 CG_INLINE EEBoardSize EEBoardSizeMake(NSUInteger width, NSUInteger height) {
     EEBoardSize lBoardSize;

@@ -55,6 +55,10 @@
     _bot.board = _board;
 }
 
+- (void)stopGame {
+    [self stopBot];
+}
+
 - (EEMoveStatus)makeMove:(EEMove *)move {
     EEMoveStatus lMoveStatus = [super makeMove:move];
     
@@ -66,7 +70,7 @@
 }
 
 - (void)startBot {
-    if ([self isOpponentPlayerActive] && ![self isGameFinished]) {
+    if ([self isOpponentPlayerActive] && [self isGameActive]) {
         [self startTimer];
     }
 }

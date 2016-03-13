@@ -57,10 +57,11 @@
     
     [_playerView setPlayerName:_gameController.player.name];
     [_playerView setPlayerType:_gameController.player.type];
-    [_playerView setActive:YES];
     
     [_opponentPlayerView setPlayerName:_gameController.opponentPlayer.name];
     [_opponentPlayerView setPlayerType:_gameController.opponentPlayer.type];
+    
+    [self updatePlayerViewsState];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -73,6 +74,7 @@
 }
 
 - (IBAction)backButtonPressed:(id)sender {
+    [_gameController stopGame];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -114,23 +116,39 @@
 
 #pragma mark - EEGameController delegate methods
 - (void)EEGameController:(EEGameController*)gameController updatedItemAtPoint:(EEBoardPoint)point {
-    [_boardView reloadDataAtPoint:point];
+    dispatch_async(dispatch_get_main_queue(),^{
+         [_boardView reloadDataAtPoint:point];
+    });
 }
 
 - (void)EEGameController:(EEGameController*)gameController activePlayerHasChanged:(EEPlayer*)activePlayer {
-    [self updatePlayerViewsState];
+    dispatch_async(dispatch_get_main_queue(),^{
+        [self updatePlayerViewsState];
+    });
 }
 
 - (void)EEGameController:(EEGameController*)gameController gameFinished:(EEFinishResult)finishResult {
-    if (!finishResult.hasWinner) {
-        [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"Game finished. No winner." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
-    } else {
-        if (_gameController.player.type == finishResult.playerType) {
-            [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"You won!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+    dispatch_async(dispatch_get_main_queue(),^{
+        if (!finishResult.hasWinner) {
+            [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"Game finished. No winner." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
         } else {
-            [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"You lose!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+            if (_gameController.player.type == finishResult.playerType) {
+                [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"You won!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+            } else {
+                [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"You lose!!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+            }
         }
-    }
+    });
+}
+
+- (void)EEGameController:(EEGameController*)gameController gameInterrupted:(EEInterruptionReason)reason {
+    dispatch_async(dispatch_get_main_queue(),^{
+        if (reason == EEInterruptionReasonOpponentLeavedGame) {
+            [[[UIAlertView alloc] initWithTitle:@"End" message:@"You won!!! Opponent has leaved game." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"End" message:@"Connection lost!!" delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];
+        }
+    });
 }
 
 @end

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "EEMenuViewController.h"
 
+#import <GameKit/GameKit.h>
+
 @interface AppDelegate () {
     UINavigationController *_navigationController;
 }
@@ -31,9 +33,7 @@
 //    _navigationController.delegate = self;
     [_navigationController setNavigationBarHidden:YES];
     //setting background image for navigation bar (only for iOS 5.0 and higher)
-    //    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
-    //        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"header.png"] forBarMetrics:UIBarMetricsDefault];
-    //    }
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:_navigationController];
     [self.window makeKeyAndVisible];
@@ -52,7 +52,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

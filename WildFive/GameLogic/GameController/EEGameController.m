@@ -77,6 +77,9 @@
     }
     
     _gameStatus = EEGameStatusActive;
+    
+    _lastPlayerMove = nil;
+    _lastOpponentPlayerMove = nil;
 }
 
 - (void)stopGame {

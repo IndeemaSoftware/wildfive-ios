@@ -9,9 +9,11 @@
 #import "EELocalConnectionManager.h"
 #import "EEEsteblishedConnection.h"
 
+#import "EEGameEstablishingAlertView.h"
+
 static NSString * const sServiceName = @"wildfive-game";
 
-@interface EELocalConnectionManager() <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, MCSessionDelegate> {
+@interface EELocalConnectionManager() <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, MCSessionDelegate, EEAlertViewDelegate> {
     MCPeerID *_peerId;
     
     MCNearbyServiceAdvertiser *_nearbyServiceAdvertiser;
@@ -22,6 +24,8 @@ static NSString * const sServiceName = @"wildfive-game";
     
     NSMutableArray *_browsedPeersArray;
     NSMutableArray *_connectingPeersArray;
+    
+    EEGameEstablishingAlertView *_gameEstablishingAlertView;
 }
 
 - (MCPeerID*)peerId;
@@ -32,8 +36,11 @@ static NSString * const sServiceName = @"wildfive-game";
 - (NSMutableArray*)browsedPeersArray;
 - (NSMutableArray*)connectingPeersArray;
 
+- (void)createReceivedSession;
+
+- (EEGameEstablishingAlertView*)createGameEstablishingAlertForInvitationWithName:(NSString*)invitationName type:(EEGameEstablishingAlertViewType)type;
+
 - (void)notifyDelegateAboutChangesInFoundItems;
-- (BOOL)askDelegateToShowAlert:(UIAlertController*)alertController;
 
 @end
 
@@ -84,23 +91,31 @@ static NSString * const sServiceName = @"wildfive-game";
 }
 
 - (void)startAdvertiser {
-    _isAdvertising = YES;
+    if (!_isAdvertising) {
+        _isAdvertising = YES;
+    }
     [self.nearbyServiceAdvertiser startAdvertisingPeer];
 }
 
 - (void)stopAdvertiser {
-    _isAdvertising = NO;
-    [self.nearbyServiceAdvertiser stopAdvertisingPeer];
+    if (_isAdvertising) {
+        _isAdvertising = NO;
+        [self.nearbyServiceAdvertiser stopAdvertisingPeer];
+    }
 }
 
 - (void)startBrowsing {
-    _isBrowsing = YES;
-    [self.nearbyServiceBrowser startBrowsingForPeers];
+    if (!_isBrowsing) {
+        _isBrowsing = YES;
+        [self.nearbyServiceBrowser startBrowsingForPeers];
+    }
 }
 
 - (void)stopBrowsing {
-    _isBrowsing = NO;
-    [self.nearbyServiceBrowser stopBrowsingForPeers];
+    if (_isBrowsing) {
+        _isBrowsing = NO;
+        [self.nearbyServiceBrowser stopBrowsingForPeers];
+    }
 }
 
 - (void)sendInvitationToPeer:(MCPeerID*)peerId {
@@ -112,6 +127,9 @@ static NSString * const sServiceName = @"wildfive-game";
     [_sentSession setDelegate:self];
     
     [self.nearbyServiceBrowser invitePeer:peerId toSession:_sentSession withContext:nil timeout:10];
+    
+    _gameEstablishingAlertView = [self createGameEstablishingAlertForInvitationWithName:peerId.displayName type:EEGameEstablishingAlertViewTypeInviting];
+    [_gameEstablishingAlertView show];
 }
 
 - (void)dealloc {
@@ -123,6 +141,8 @@ static NSString * const sServiceName = @"wildfive-game";
     
     [self.browsedPeersArray removeAllObjects];
     [self.connectingPeersArray removeAllObjects];
+    
+    [_gameEstablishingAlertView dismiss];
 }
 
 #pragma mark - Private methods
@@ -163,6 +183,19 @@ static NSString * const sServiceName = @"wildfive-game";
     return _connectingPeersArray;
 }
 
+- (void)createReceivedSession {
+    _receivedSession = [[MCSession alloc] initWithPeer:self.peerId securityIdentity:nil encryptionPreference:MCEncryptionRequired];
+    [_receivedSession setDelegate:self];
+}
+
+- (EEGameEstablishingAlertView*)createGameEstablishingAlertForInvitationWithName:(NSString*)invitationName type:(EEGameEstablishingAlertViewType)type {
+    EEGameEstablishingAlertView *lGameEstablishingAlertView = [EEGameEstablishingAlertView createAlerView];
+    [lGameEstablishingAlertView setDelegate:self];
+    lGameEstablishingAlertView.type = type;
+    lGameEstablishingAlertView.invitationName = invitationName;
+    return lGameEstablishingAlertView;
+}
+
 - (void)notifyDelegateAboutChangesInFoundItems {
     if (self.delegate != nil) {
         [self.delegate EELocalConnectionBrowserUpdatePeers];
@@ -171,58 +204,68 @@ static NSString * const sServiceName = @"wildfive-game";
     }
 }
 
-- (BOOL)askDelegateToShowAlert:(UIAlertController*)alertController {
-    if (self.delegate != nil) {
-        [self.delegate EELocalConnectionNeedPressentAlert:alertController];
-        return YES;
-    } else {
-        DLog(@"EELocalConnection delegate not found.");
-    }
+#pragma mark - MCNearbyServiceAdvertiser delegate
+- (void)EEAlertView:(EEAlertView *)alertView buttonPressed:(NSUInteger)buttonIndex {
+    DLog(@"EEAlertView buttonPressed");
     
-    return NO;
+    if ((buttonIndex == 1) && (_gameEstablishingAlertView.type == EEGameEstablishingAlertViewTypeReceivingInvite)) {
+        _gameEstablishingAlertView.state = EEGameEstablishingConnecting;
+        _gameEstablishingAlertView.invitationHandler(YES);
+    } else {
+        if (_gameEstablishingAlertView.type == EEGameEstablishingAlertViewTypeInviting) {
+            [_sentSession disconnect];
+            [_sentSession setDelegate:nil];
+            _sentSession = nil;
+        } else {
+            _gameEstablishingAlertView.invitationHandler(NO);
+            [_receivedSession disconnect];
+            [_receivedSession setDelegate:nil];
+            _receivedSession = nil;
+        }
+        
+        [_gameEstablishingAlertView dismiss];
+        _gameEstablishingAlertView = nil;
+    }
 }
 
 #pragma mark - MCNearbyServiceAdvertiser delegate
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL, MCSession * _Nonnull))invitationHandler {
+    DLog(@"didReceiveInvitationFromPeer %@", peerID);
     __block MCSession *lSession;
+    __block EELocalConnectionManager *lSelf_ = self;
+    
+    if ([self.connectingPeersArray containsObject:peerID]) {
+        if (_sentSession != nil) {
+            [self createReceivedSession];
+        }
+        
+        lSession = _receivedSession;
+        
+        _gameEstablishingAlertView.invitationHandler = ^(BOOL accepted) {
+            invitationHandler(accepted, lSession);
+            [lSelf_.connectingPeersArray removeObject:peerID];
+        };
+        return;
+    }
     
     if (_sentSession != nil || _receivedSession != nil || !_isAdvertising) {
         invitationHandler(NO, lSession);
         return;
     }
     
-    _receivedSession = [[MCSession alloc] initWithPeer:self.peerId securityIdentity:nil encryptionPreference:MCEncryptionRequired];
-    [_receivedSession setDelegate:self];
+    [self createReceivedSession];
     
     lSession = _receivedSession;
     
-    if ([self.connectingPeersArray containsObject:peerID]) {
-        invitationHandler(NO, lSession);
-        return;
-    }
-    
     [self.connectingPeersArray addObject:peerID];
     
+    _gameEstablishingAlertView = [self createGameEstablishingAlertForInvitationWithName:peerID.displayName type:EEGameEstablishingAlertViewTypeReceivingInvite];
+    _gameEstablishingAlertView.invitationHandler = ^(BOOL accepted) {
+        invitationHandler(accepted, lSession);
+        [lSelf_.connectingPeersArray removeObject:peerID];
+    };
     
-    UIAlertController *lInvitationAlertController = [[UIAlertController alloc] init];
-    
-    [lInvitationAlertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Accept", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        invitationHandler(YES, lSession);
-        [self.connectingPeersArray removeObject:peerID];
-    }]];
-    
-    // decline invitation action
-    [lInvitationAlertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Decline", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        invitationHandler(NO, lSession);
-        [self.connectingPeersArray removeObject:peerID];
-        _receivedSession = nil;
-    }]];
-    
-    
-    if (![self askDelegateToShowAlert:lInvitationAlertController]) {
-        invitationHandler(NO, lSession);
-        [self.connectingPeersArray removeObject:peerID];
-    }
+    [_gameEstablishingAlertView show];
 }
 
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didNotStartAdvertisingPeer:(NSError *)error {
@@ -280,14 +323,13 @@ static NSString * const sServiceName = @"wildfive-game";
         
         EEEsteblishedConnection *lEsteblishedConnection = [EEEsteblishedConnection new];
         lEsteblishedConnection.connectionObject = session;
-        lEsteblishedConnection.connectionType == EEGameConnectionTypeLocal;
+        lEsteblishedConnection.connectionType = EEGameConnectionTypeLocal;
         
         if (session.connectedPeers.count != 0) {
             lEsteblishedConnection.playerName = session.connectedPeers[0].displayName;
         } else {
             lEsteblishedConnection.playerName = NSLocalizedString(@"Opponent", nil);
         }
-        
         
         if ([_sentSession isEqual:session]) {
             _sentSession = nil;
@@ -298,13 +340,31 @@ static NSString * const sServiceName = @"wildfive-game";
         }
         
         [self.delegate EELocalConnectionEsteblishedConnection:lEsteblishedConnection];
+        
+        dispatch_async(dispatch_get_main_queue(),^{
+            _gameEstablishingAlertView.state = EEGameEstablishingConnected;
+            [_gameEstablishingAlertView dismissAfter:1];
+            _gameEstablishingAlertView = nil;
+        });
+        
     } else if (state == MCSessionStateConnecting) {
         DLog(@"MCSessionState Connecting %@", session);
+        
+        dispatch_async(dispatch_get_main_queue(),^{
+            _gameEstablishingAlertView.state = EEGameEstablishingConnecting;
+        });
+        
     } else {
         _sentSession = nil;
         _receivedSession = nil;
         
         DLog(@"MCSessionState Not Connected");
+        
+        dispatch_async(dispatch_get_main_queue(),^{
+            _gameEstablishingAlertView.state = EEGameEstablishingConnectionFailed;
+            [_gameEstablishingAlertView dismissAfter:1];
+            _gameEstablishingAlertView = nil;
+        });
     }
 }
 

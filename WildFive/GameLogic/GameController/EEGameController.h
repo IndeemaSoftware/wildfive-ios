@@ -20,6 +20,9 @@
 @property (nonatomic, readonly) EEPlayer *opponentPlayer;
 @property (nonatomic, readonly) EEPlayer *activePlayer;
 
+@property (nonatomic, readonly) EEMove *lastPlayerMove;
+@property (nonatomic, readonly) EEMove *lastOpponentPlayerMove;
+
 @property (nonatomic, readonly) EEBoardSize boardSize;
 
 @property (nonatomic, weak) id <EEGameControllerDelegate> delegate;

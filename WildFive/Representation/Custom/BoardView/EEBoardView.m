@@ -31,7 +31,7 @@
 #pragma mark - Public methods
 - (void)reloadData {
     if (self.delegate == nil) {
-        _boardSize = EEBoardSizeMake(3, 3);
+        _boardSize = EEBoardSizeMake(10, 10);
     }
     
     _boardSize = [self.delegate boardSizeBoardView:self];
@@ -41,6 +41,10 @@
 
 - (void)reloadDataAtPoint:(EEBoardPoint)point {
     [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:point.x inSection:point.y]]];
+}
+
+- (void)drawFinishLinestartingFromPoint:(EEBoardPoint)startPoint endPoint:(EEBoardPoint)endPoint {
+    
 }
 
 #pragma mark - Private methods

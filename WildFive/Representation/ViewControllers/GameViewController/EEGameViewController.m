@@ -128,6 +128,8 @@
 }
 
 - (void)EEGameController:(EEGameController*)gameController gameFinished:(EEFinishResult)finishResult {
+    [_boardView drawFinishLinestartingFromPoint:finishResult.startPoint endPoint:EEBoardPointMake(finishResult.startPoint.x + finishResult.lineLenght - 1, finishResult.startPoint.y + finishResult.lineLenght - 1)];
+    
     dispatch_async(dispatch_get_main_queue(),^{
         if (!finishResult.hasWinner) {
             [[[UIAlertView alloc] initWithTitle:@"Finish" message:@"Game finished. No winner." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil] show];

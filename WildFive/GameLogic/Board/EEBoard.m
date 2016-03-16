@@ -45,6 +45,8 @@ typedef struct  {
 
 - (EEFinishResult)checkForWinnerForPlayerType:(EEPlayerType)playerType atPoint:(EEBoardPoint)point direction:(EELineDirection)direction;
 
+- (NSUInteger)finishLineFollowedWithPlayerType:(EEPlayerType)playerType atPoint:(EEBoardPoint)point direction:(EELineDirection)direction;
+
 // copy
 - (void)copyDataFromBoard:(EEBoard*)board;
 
@@ -324,10 +326,45 @@ typedef struct  {
         lFinishResult.playerType = playerType;
         lFinishResult.startPoint = point;
         lFinishResult.lineDirection = direction;
-        lFinishResult.lineLenght = lLineValue;
+        lFinishResult.lineLenght = lLineValue + [self finishLineFollowedWithPlayerType:playerType atPoint:point direction:direction];
     }
     
     return lFinishResult;
+}
+
+- (NSUInteger)finishLineFollowedWithPlayerType:(EEPlayerType)playerType atPoint:(EEBoardPoint)point direction:(EELineDirection)direction {
+    NSUInteger lLenght = 0;
+    
+    EEBoardPoint lTempPoint = point;
+    EEBoardPoint lRecursiveOffset;
+    
+    if (direction == EELineDirectionH) {
+        lRecursiveOffset = EEBoardPointMake(1, 0);
+    } else if (direction == EELineDirectionHVR) {
+        lRecursiveOffset = EEBoardPointMake(1, 1);
+    } else if (direction == EELineDirectionHVL) {
+        lRecursiveOffset = EEBoardPointMake(-1, 1);
+    } else if (direction == EELineDirectionV) {
+        lRecursiveOffset = EEBoardPointMake(0, 1);
+    }
+    
+    for (NSUInteger recursiveOffset = 1; recursiveOffset < 5; recursiveOffset++) {
+        lTempPoint = EEBoardPointMake(point.x + recursiveOffset * lRecursiveOffset.x, point.y + recursiveOffset * lRecursiveOffset.y);
+        
+        if (EEBoardPointIsInsideBoard(lTempPoint, self.boardSize)) {
+            NSUInteger lLineValue = [[self itemAtPoint:lTempPoint] lineValueForPlayer:playerType direction:direction];
+            
+            if (5 <= lLineValue) {
+                lLenght++;
+            } else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+    
+    return lLenght;
 }
 
 - (void)copyDataFromBoard:(EEBoard*)board {

@@ -31,6 +31,16 @@
     return @"EEBoardViewItemId";
 }
 
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    
+    if (selected) {
+        [self setBackgroundColor:[UIColor colorWithRed:0.0f green:1.0f blue:0.0f alpha:0.3f]];
+    } else {
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+}
+
 - (void)setBoardSign:(EEBoardSign)boardSign {
     _boardSign = boardSign;
     

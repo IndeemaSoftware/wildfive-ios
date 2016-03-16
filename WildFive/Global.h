@@ -46,6 +46,8 @@ if (Object != nil) {\
 //@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa"
 #define APP_ICON_LINK @"https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash3/64880_481494851898344_176967093_n.png"
 
+#define DOCUMENTS_FOLDER [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+
 //font
 #define FONT @"AmericanTypewriter"
 #define FONT_BOLD @"AmericanTypewriter-Bold"

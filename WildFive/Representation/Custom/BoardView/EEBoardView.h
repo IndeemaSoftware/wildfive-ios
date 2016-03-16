@@ -20,6 +20,9 @@
 - (void)reloadData;
 - (void)reloadDataAtPoint:(EEBoardPoint)point;
 
+- (void)drawFinishLinestartingFromPoint:(EEBoardPoint)startPoint endPoint:(EEBoardPoint)endPoint;
+
+
 @end
 
 

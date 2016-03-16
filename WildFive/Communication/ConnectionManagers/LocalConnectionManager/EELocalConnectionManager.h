@@ -38,6 +38,5 @@
 
 @protocol EELocalConnectionManagerDelegate <NSObject>
 - (void)EELocalConnectionBrowserUpdatePeers;
-- (void)EELocalConnectionNeedPressentAlert:(UIAlertController*)alertController;
 - (void)EELocalConnectionEsteblishedConnection:(EEEsteblishedConnection*)connection;
 @end

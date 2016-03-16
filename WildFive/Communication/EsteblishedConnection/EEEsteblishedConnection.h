@@ -15,7 +15,7 @@ typedef NS_ENUM(NSInteger, EEGameConnectionType) {
 
 @interface EEEsteblishedConnection : NSObject
 
-@property (nonatomic, strong) id connectionObject;
+@property (nonatomic, strong) id connectionObject; // for local connection it's MCSession, for GameCenter it's GKMatch
 @property (nonatomic, copy) NSString *playerType;
 @property (nonatomic, copy) NSString *playerName;
 @property (nonatomic, assign) EEGameConnectionType connectionType;

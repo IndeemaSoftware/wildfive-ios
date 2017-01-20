@@ -140,6 +140,7 @@
 		05E42DBF1C95F51800F8C722 /* EEEsteblishedConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEsteblishedConnection.m; sourceTree = "<group>"; };
 		05E42DC31C95F63400F8C722 /* EEGameConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEGameConnection.h; path = Communication/GameConnections/Protocols/EEGameConnection.h; sourceTree = "<group>"; };
 		05E42DC41C95F64300F8C722 /* EEGameConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EEGameConnectionDelegate.h; path = Communication/GameConnections/Protocols/EEGameConnectionDelegate.h; sourceTree = "<group>"; };
+		05EA980F1CF5B64600AD1C15 /* EEConnectionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEConnectionManagerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -591,6 +592,7 @@
 		05E42DB91C95F51800F8C722 /* ConnectionManagers */ = {
 			isa = PBXGroup;
 			children = (
+				05EA980F1CF5B64600AD1C15 /* EEConnectionManagerDelegate.h */,
 				05E42DC51C96C7EA00F8C722 /* GCConnectionManager */,
 				05E42DBA1C95F51800F8C722 /* LocalConnectionManager */,
 			);
@@ -837,14 +839,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jitender Sharma (BLS4Y56TJG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Volodymyr Shevchyk (PP6TFAPV7S)";
 				GCC_PREFIX_HEADER = WildFive/WildFivePrefix.pch;
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.indeema.wildfive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db48c30c-7ec9-452d-828d-1063685234f4";
+				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
 			};
 			name = Debug;
 		};
@@ -853,14 +855,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jitender Sharma (BLS4Y56TJG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Volodymyr Shevchyk (PP6TFAPV7S)";
 				GCC_PREFIX_HEADER = WildFive/WildFivePrefix.pch;
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.indeema.wildfive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db48c30c-7ec9-452d-828d-1063685234f4";
+				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
 			};
 			name = Release;
 		};
@@ -906,14 +908,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jitender Sharma (BLS4Y56TJG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Volodymyr Shevchyk (PP6TFAPV7S)";
 				GCC_PREFIX_HEADER = WildFive/WildFivePrefix.pch;
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.indeema.wildfive;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "db48c30c-7ec9-452d-828d-1063685234f4";
+				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
 			};
 			name = TestLight;
 		};

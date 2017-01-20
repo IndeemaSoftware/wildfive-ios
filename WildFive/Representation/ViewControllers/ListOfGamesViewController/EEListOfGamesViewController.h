@@ -8,6 +8,15 @@
 
 #import "EEFlowViewController.h"
 
+typedef NS_ENUM(NSInteger, EEListType) {
+    EEListTypeLocal,
+    EEListTypeOnline
+};
+
 @interface EEListOfGamesViewController : EEFlowViewController
+
+@property (nonatomic, readonly) EEListType listType;
+
+- (instancetype)initWithListType:(EEListType)listType;
 
 @end

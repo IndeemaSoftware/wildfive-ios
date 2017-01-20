@@ -111,7 +111,9 @@
 #pragma mark - Private methods
 
 - (IBAction)onlineGameButtonPressed:(id)pSender {
+    EEListOfGamesViewController *lListOfGamesViewController = [[EEListOfGamesViewController alloc] initWithListType:EEListTypeOnline];
     
+    [self.navigationController pushViewController:lListOfGamesViewController animated:YES];
 }
 
 - (IBAction)offlineGameButtonPressed:(id)pSender {
@@ -122,7 +124,7 @@
 }
 
 - (IBAction)localNetworkButtonPressed:(id)pSender {
-    EEListOfGamesViewController *lListOfGamesViewController = [[EEListOfGamesViewController alloc] initWithNibName:@"EEListOfGamesViewController" bundle:nil];
+    EEListOfGamesViewController *lListOfGamesViewController = [[EEListOfGamesViewController alloc] initWithListType:EEListTypeLocal];
     
     [self.navigationController pushViewController:lListOfGamesViewController animated:YES];
 }

@@ -198,7 +198,7 @@ static NSString * const sServiceName = @"wildfive-game";
 
 - (void)notifyDelegateAboutChangesInFoundItems {
     if (self.delegate != nil) {
-        [self.delegate EELocalConnectionBrowserUpdatePeers];
+        [self.delegate EEConnectionManagerBrowserUpdatePeers];
     } else {
         DLog(@"EELocalConnection delegate not found.");
     }
@@ -339,7 +339,7 @@ static NSString * const sServiceName = @"wildfive-game";
             lEsteblishedConnection.playerType = @"X";
         }
         
-        [self.delegate EELocalConnectionEsteblishedConnection:lEsteblishedConnection];
+        [self.delegate EEConnectionManagerEstablishedConnection:lEsteblishedConnection];
         
         dispatch_async(dispatch_get_main_queue(),^{
             _gameEstablishingAlertView.state = EEGameEstablishingConnected;

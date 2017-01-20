@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
-
-@class EEEsteblishedConnection;
-
-@protocol EELocalConnectionManagerDelegate;
+#import "EEConnectionManagerDelegate.h"
 
 @interface EELocalConnectionManager : NSObject
 
@@ -22,7 +19,7 @@
 
 @property (nonatomic, readonly) NSArray *browsedPeers;
 
-@property (nonatomic, weak) id <EELocalConnectionManagerDelegate> delegate;
+@property (nonatomic, weak) id <EEConnectionManagerDelegate> delegate;
 
 - (instancetype)initWithAdvertisingName:(NSString*)advertisingName;
 
@@ -34,9 +31,4 @@
 
 - (void)sendInvitationToPeer:(MCPeerID*)peerId;
 
-@end
-
-@protocol EELocalConnectionManagerDelegate <NSObject>
-- (void)EELocalConnectionBrowserUpdatePeers;
-- (void)EELocalConnectionEsteblishedConnection:(EEEsteblishedConnection*)connection;
 @end

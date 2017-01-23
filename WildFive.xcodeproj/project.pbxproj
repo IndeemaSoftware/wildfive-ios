@@ -839,14 +839,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Volodymyr Shevchyk (PP6TFAPV7S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maxym Sahaydak (MACZG5947H)";
+				DEVELOPMENT_TEAM = BZ7FRR6Z9T;
 				GCC_PREFIX_HEADER = WildFive/WildFivePrefix.pch;
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
+				PROVISIONING_PROFILE = "29f9189b-8b0c-4256-9e9d-76f3d0b98d89";
+				PROVISIONING_PROFILE_SPECIFIER = "Test app dev profile";
 			};
 			name = Debug;
 		};
@@ -855,7 +857,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Volodymyr Shevchyk (PP6TFAPV7S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maxym Sahaydak (MACZG5947H)";
 				GCC_PREFIX_HEADER = WildFive/WildFivePrefix.pch;
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -863,6 +865,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
+				PROVISIONING_PROFILE_SPECIFIER = "Test app dev profile";
 			};
 			name = Release;
 		};
@@ -908,7 +911,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Volodymyr Shevchyk (PP6TFAPV7S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maxym Sahaydak (MACZG5947H)";
 				GCC_PREFIX_HEADER = WildFive/WildFivePrefix.pch;
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -916,6 +919,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
+				PROVISIONING_PROFILE_SPECIFIER = "Test app dev profile";
 			};
 			name = TestLight;
 		};

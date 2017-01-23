@@ -201,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				05724B2E1C945E3500CEB159 /* Communication */,
-				05CE120F1C944A6A0078D527 /* Categories */,
 				05B0AE1A1C8BB4F50069C263 /* GameLogic */,
 				0598DB651C98913F00AFDCD5 /* Representation */,
 				05484EB11C8B7DDB00BDDFF8 /* Global.h */,
@@ -550,13 +549,6 @@
 				0502A8A61C8EEC8E00F70210 /* EEGameController_hidden.h */,
 			);
 			name = GameController;
-			sourceTree = "<group>";
-		};
-		05CE120F1C944A6A0078D527 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Categories;
 			sourceTree = "<group>";
 		};
 		05E42DA31C95F44C00F8C722 /* GameConnections */ = {

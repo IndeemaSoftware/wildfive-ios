@@ -840,7 +840,7 @@
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indeema.gh-gomoku";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "29f9189b-8b0c-4256-9e9d-76f3d0b98d89";
 				PROVISIONING_PROFILE_SPECIFIER = "Test app dev profile";
@@ -856,7 +856,7 @@
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indeema.gh-gomoku";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
 				PROVISIONING_PROFILE_SPECIFIER = "Test app dev profile";
@@ -909,7 +909,7 @@
 				INFOPLIST_FILE = WildFive/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xio.wildfive;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.indeema.gh-gomoku";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "6968b037-5b8e-4eef-a46f-c60840f82840";
 				PROVISIONING_PROFILE_SPECIFIER = "Test app dev profile";
